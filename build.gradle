@@ -7,6 +7,14 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src"]
+        }
+    }
+}
+
 jar {
     manifest {
         attributes 'Main-Class': 'com.test.Run'
