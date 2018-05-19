@@ -4,13 +4,13 @@
  * Instituto de Informática
  *
  * Created : May 13, 2018
- * Author  : 
+ * Author  : Matheus
  */
 package genius.model;
 
 
 /**
- * @author Graeff
+ * @author Matheus
  *
  */
 public class Player {
