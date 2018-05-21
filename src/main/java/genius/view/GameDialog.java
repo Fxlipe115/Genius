@@ -16,10 +16,7 @@ import java.awt.event.MouseListener;
 import java.util.Observable;
 
 import javax.swing.JDialog;
-import javax.swing.SwingWorker;
 import javax.swing.Timer;
-
-import org.junit.validator.PublicClassValidator;
 
 import genius.model.Button;
 import net.miginfocom.swing.MigLayout;
