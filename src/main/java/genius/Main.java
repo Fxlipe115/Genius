@@ -9,6 +9,7 @@
 package genius;
 
 import genius.controller.ApplicationController;
+import genius.controller.GameController;
 
 /**
  * @author Graeff
@@ -20,8 +21,9 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ApplicationController applicationController = new ApplicationController();
-		applicationController.initApplication();
+//		ApplicationController applicationController = new ApplicationController();
+//		applicationController.initApplication();
+		new GameController();
 	}
 
 }
