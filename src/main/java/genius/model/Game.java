@@ -7,7 +7,9 @@
  * Author  : 
  */
 package genius.model;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -15,63 +17,46 @@ import java.util.List;
  *
  */
 public class Game {
-	/**
-	 * 
-	 */
 	private List<Button> sequence;
-
-	/**
-	 * 
-	 */
 	private int currentIndex;
-
-	/**
-	 * 
-	 */
-	protected Player player;
+	private Player player;
 
 
-	/**
-	 * 
-	 */
 	public Game(){
-		super();
+		sequence = null;
+		currentIndex = 0;
+		player = new Player();
 	}
 
 	
-	/**
-	 * @param size
-	 */
-	private void generateSequence(int size) {
-		// TODO implement me
+	public void generateSequence(int size) {
+		Random random = new Random();
+		sequence = new ArrayList<Button>(size);
+		for(int i = 0; i < size; i++) {
+			int newButtonIndex = random.nextInt(Button.values().length);
+			Button newButton = Button.values()[newButtonIndex];
+			sequence.add(i, newButton);
+		}
 	}
 
 	
-	/**
-	 * @return
-	 */
-	public Button getNextButton() {
-		// TODO implement me
-		return Button.RED;
+	public List<Button> getSequence() {
+		return sequence;
 	}
 
-	
-	/**
-	 * @return
-	 */
-	public Button getButtonAt() {
-		// TODO implement me
-		return Button.RED;
+
+	public int getCurrentIndex() {
+		return currentIndex;
 	}
 
-	
-	/**
-	 * @param button
-	 * @return
-	 */
-	public boolean isCorrect(Button button) {
-		// TODO implement me
-		return false;
+
+	public void incrementCurrentIndex() {
+		currentIndex++;
+	}
+
+
+	public Player getPlayer() {
+		return player;
 	}
 
 }
