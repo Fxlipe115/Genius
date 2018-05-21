@@ -25,7 +25,7 @@ public class Game {
 	public Game(){
 		sequence = null;
 		currentIndex = 0;
-		player = new Player();
+		player = null;
 	}
 
 	
