@@ -10,6 +10,8 @@ package genius.controller;
 import genius.view.ButtonView;
 import genius.view.GameDialog;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
 import genius.model.Button;
@@ -20,7 +22,7 @@ import genius.model.Game;
  * @author Graeff
  *
  */
-public class GameController implements java.awt.event.MouseListener {
+public class GameController implements java.awt.event.ActionListener {
 	private Game gameModel;
 	private GameDialog gameView;
 	
@@ -69,56 +71,35 @@ public class GameController implements java.awt.event.MouseListener {
 
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		ButtonView pressedButton = (ButtonView) e.getSource();
-		gameView.animateButton(pressedButton);
-		Button pressedButtonColor = pressedButton.getValue();
-		if(gameModel.getSequence().get(sequenceIndex) == pressedButtonColor) {
-			if(sequenceIndex < score) {
-				sequenceIndex++;
-				System.out.println("Right");
-			} else { // hit a full sequence
-				score++;
-				sequenceIndex = 0;
-				playSequence();
-				System.out.println("Score: " + score);
-				if(score == DIFFICULTY) {
-					System.out.println("You win");
-					gameView.dispose();
-				}
-			}
-		} else {
-			System.out.println("You lose");
-			gameView.dispose();
-		}
-	}
-
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("controller");
 		
 	}
 
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+//	@Override
+//	public void mouseClicked(MouseEvent e) {
+//		System.out.println("controller");
+//		Button pressedButtonColor = Button.BLUE;
+//		
+//		if(gameModel.getSequence().get(sequenceIndex) == pressedButtonColor) {
+//			if(sequenceIndex < score) {
+//				sequenceIndex++;
+//				System.out.println("Right");
+//			} else { // hit a full sequence
+//				score++;
+//				sequenceIndex = 0;
+//				playSequence();
+//				System.out.println("Score: " + score);
+//				if(score == DIFFICULTY) {
+//					System.out.println("You win");
+////					gameView.dispose();
+//				}
+//			}
+//		} else {
+//			System.out.println("You lose");
+////			gameView.dispose();
+//		}
 		
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
 
 }
 

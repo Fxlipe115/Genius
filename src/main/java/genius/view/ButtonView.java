@@ -7,9 +7,13 @@ import genius.model.Button;
 @SuppressWarnings("serial")
 public class ButtonView extends Canvas{
 	private Button value;
+	private boolean turnedOn;
+	private Color color;
 	
-	public ButtonView(Button value) {
+	public ButtonView(Button value, Color color) {
 		this.value = value;
+		this.color = color;
+		this.setTurnedOn(false);
 	}
 	
 	public ButtonView(Color buttonColor) {
@@ -19,5 +23,20 @@ public class ButtonView extends Canvas{
 	public Button getValue() {
 		return value;
 	}
+
+	public boolean isTurnedOn() {
+		return turnedOn;
+	}
+
+	public void setTurnedOn(boolean turnedOn) {
+		this.turnedOn = turnedOn;
+		if(turnedOn) {
+			this.setBackground(color.brighter());
+		} else {
+			this.setBackground(color.darker());
+		}
+	}
+	
+
 
 }
