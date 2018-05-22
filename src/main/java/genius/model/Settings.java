@@ -20,6 +20,7 @@ public enum Settings {
 
 	private Mode mode;
 	
+	private int volume;
 
 	public Difficulty getDifficulty() {
 		return difficulty;
@@ -35,6 +36,14 @@ public enum Settings {
 
 	public void setMode(Mode mode) {
 		this.mode = mode;
+	}
+
+	public int getVolume() {
+		return volume;
+	}
+
+	public void setVolume(int volume) {
+		this.volume = volume;
 	}
 
 }
