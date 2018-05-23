@@ -7,13 +7,9 @@
  * Author  : Graeff
  */
 package genius.controller;
-import genius.view.ButtonView;
 import genius.view.GameDialog;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-
 import genius.model.Button;
 import genius.model.Game;
 
@@ -50,19 +46,10 @@ public class GameController implements java.awt.event.ActionListener {
 	
 	public void playSequence() {
 		for(int i = 0; i <= score; i++) {
-			gameView.animateButton(gameModel.getSequence().get(i));
+			Button button = gameModel.getSequence().get(i);
+			gameView.getGui().setPressedButton(button);
 		}
 	}
-	
-//	public void animateButton() {
-//		Thread t = new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		})
-//	}
 
 
 	public void pause() {
@@ -72,34 +59,37 @@ public class GameController implements java.awt.event.ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("controller");
+		if(e.getActionCommand() == "click") {
+			Button pressedButtonColor = Button.values()[e.getModifiers()];
+			
+			gameView.getGui().setPressedButton(pressedButtonColor);
+			
+			if(gameModel.getSequence().get(sequenceIndex) == pressedButtonColor) {
+				if(sequenceIndex < score) {
+					sequenceIndex++;
+					System.out.println("Right");
+				} else { // hit a full sequence
+					score++;
+					sequenceIndex = 0;
+					playSequence();
+					System.out.println("Score: " + score);
+					if(score == DIFFICULTY) {
+						System.out.println("You win");
+							gameView.close();
+					}
+				}
+			} else {
+				System.out.println("You lose");
+					gameView.close();
+			}
+		}
+		
+		if(e.getActionCommand() == "wait") {
+			gameView.getGui().setPressedButton(null);
+		}
+		
 		
 	}
-
-//	@Override
-//	public void mouseClicked(MouseEvent e) {
-//		System.out.println("controller");
-//		Button pressedButtonColor = Button.BLUE;
-//		
-//		if(gameModel.getSequence().get(sequenceIndex) == pressedButtonColor) {
-//			if(sequenceIndex < score) {
-//				sequenceIndex++;
-//				System.out.println("Right");
-//			} else { // hit a full sequence
-//				score++;
-//				sequenceIndex = 0;
-//				playSequence();
-//				System.out.println("Score: " + score);
-//				if(score == DIFFICULTY) {
-//					System.out.println("You win");
-////					gameView.dispose();
-//				}
-//			}
-//		} else {
-//			System.out.println("You lose");
-////			gameView.dispose();
-//		}
-		
 
 }
 

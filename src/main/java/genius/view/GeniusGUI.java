@@ -7,8 +7,12 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 
+import javax.swing.Timer;
 import javax.swing.AbstractButton;
 import genius.model.Button;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
 @SuppressWarnings("serial")
@@ -26,18 +30,53 @@ public class GeniusGUI extends AbstractButton {
 		this.pressedButton = null;
 		this.width = width;
 		this.height = height;
-		addMouseListener(new MouseAdapter() {
+		this.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("gui");
+			public void mouseClicked(MouseEvent e) {
+				if(pressedButton == null) {
+					int x = e.getX(), y = e.getY();
+					int modifier = 0;
+	
+					if (x > 0 && x < width / 2 && y > 0 && y < height / 2)
+					{
+						modifier = 1;
+					}
+					else if (x > width / 2 && x < width && y > 0 && y < height / 2)
+					{
+						modifier = 0;
+					}
+					else if (x > 0 && x < width / 2 && y > height / 2 && y < height)
+					{
+						modifier = 2;
+					}
+					else if (x > width / 2 && x < width && y > height / 2 && y < height)
+					{
+						modifier = 3;
+					}
+					
+					ActionEvent ae = new ActionEvent(e, e.getID(), "click", 0, modifier);
+					fireActionPerformed(ae);
+				}
 			}
-		});		
+		});
 		repaint();
 	}
 	
 	
 	public void setPressedButton(Button pressedButton) {
 		this.pressedButton = pressedButton;
+		if(pressedButton != null) {
+			int delay = 750;
+			Timer t = new Timer(delay, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					ActionEvent ae = new ActionEvent(this, 0, "wait");
+					fireActionPerformed(ae);
+				}
+			});
+			t.setRepeats(false);
+			t.start();
+		}
 		repaint();
 	}
 
@@ -123,12 +162,5 @@ public class GeniusGUI extends AbstractButton {
 		((Graphics2D) g).setStroke(new BasicStroke(10));
 		g.drawOval(0, 0, width, height);
 	}
-	
-	public void mouseClicked(MouseEvent e) {
-		System.out.println("gui");
-//		this.fireActionPerformed();
-	}
-
-
 	
 }
