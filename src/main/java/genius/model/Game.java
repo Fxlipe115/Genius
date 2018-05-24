@@ -16,15 +16,13 @@ import java.util.Random;
  * @author Graeff
  *
  */
-public class Game {
+public class Game extends java.util.Observable{
 	private List<Button> sequence;
-	private int currentIndex;
 	private Player player;
 
 
 	public Game(){
 		sequence = null;
-		currentIndex = 0;
 		player = null;
 	}
 
@@ -43,17 +41,7 @@ public class Game {
 	public List<Button> getSequence() {
 		return sequence;
 	}
-
-
-	public int getCurrentIndex() {
-		return currentIndex;
-	}
-
-
-	public void incrementCurrentIndex() {
-		currentIndex++;
-	}
-
+	
 
 	public Player getPlayer() {
 		return player;

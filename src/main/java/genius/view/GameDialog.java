@@ -8,92 +8,49 @@
  */
 package genius.view;
 
-import javax.swing.JDialog;
-import net.miginfocom.swing.MigLayout;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class GameDialog extends JDialog {
-	private Canvas greenButton;
-	private Canvas redButton;
-	private Canvas yellowButton;
-	private Canvas blueButton;
-	private static final Color GREEN_BUTTON_COLOR = Color.GREEN;
-	private static final Color RED_BUTTON_COLOR = Color.RED;
-	private static final Color YELLOW_BUTTON_COLOR = Color.YELLOW;
-	private static final Color BLUE_BUTTON_COLOR = Color.BLUE;
-	private static final Color BUTTON_PRESSED_COLOR = Color.BLACK;
-	
+public class GameDialog extends JPanel implements java.util.Observer {
+	private GeniusGUI gui;
+	private JFrame frame;
 	
 	/**
 	 * Create the dialog.
 	 */
 	public GameDialog() {
-		setTitle("Genius");
-		setResizable(false);
-		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new MigLayout("", "[grow,fill][grow,fill]", "[grow,fill][grow,fill]"));
-		
-		greenButton = new Canvas();
-		greenButton.setBackground(GREEN_BUTTON_COLOR);
-		greenButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				greenButton.setBackground(BUTTON_PRESSED_COLOR);
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				greenButton.setBackground(GREEN_BUTTON_COLOR);
-			}
-		});
-		getContentPane().add(greenButton, "cell 0 0");
-		
-		redButton = new Canvas();
-		redButton.setBackground(RED_BUTTON_COLOR);
-		redButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				redButton.setBackground(BUTTON_PRESSED_COLOR);
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				redButton.setBackground(RED_BUTTON_COLOR);
-			}
-		});
-		getContentPane().add(redButton, "cell 1 0");
-		
-		yellowButton = new Canvas();
-		yellowButton.setBackground(YELLOW_BUTTON_COLOR);
-		yellowButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				yellowButton.setBackground(BUTTON_PRESSED_COLOR);
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				yellowButton.setBackground(YELLOW_BUTTON_COLOR);
-			}
-		});
-		getContentPane().add(yellowButton, "cell 0 1");
-		
-		blueButton = new Canvas();
-		blueButton.setBackground(BLUE_BUTTON_COLOR);
-		blueButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				blueButton.setBackground(BUTTON_PRESSED_COLOR);
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				blueButton.setBackground(BLUE_BUTTON_COLOR);
-			}
-		});
-		getContentPane().add(blueButton, "cell 1 1");
+		gui = new GeniusGUI(445, 445);
+		frame = new JFrame("Genius");
+		frame.setSize(450, 475);
+		frame.setVisible(true);
+		frame.setResizable(false);
+		frame.add(gui);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+	}
+	
 
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void addController(ActionListener controller){
+		gui.addActionListener(controller);
+	}
+	
+
+	public void close() {
+		frame.dispose();
 	}
 
+
+	public GeniusGUI getGui() {
+		return gui;
+	}
 }
