@@ -8,13 +8,17 @@
  */
 package genius.model;
 import java.util.List;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 /**
  * @author Graeff
  *
  */
-public class Scores {
+public class Scores extends java.util.Observable implements Serializable{
 	/**
 	 * 
 	 */
@@ -25,49 +29,58 @@ public class Scores {
 	 * 
 	 */
 	public Scores(){
-		super();
-	}
 
-	
-	/**
-	 * @return
-	 */
-	public List<Player> getScores() {
-		// TODO implement me
-		return null;
+		this.scores = new ArrayList<Player>();
+		
 	}
-
-	
 	/**
-	 * @param player
+	 *
 	 */
 	public void addScore(Player player) {
-		// TODO implement me
-	}
-
+		
+	//Adiciona novo jogador à lista da Scores e ordena.	
 	
+		this.scores.add(player);
+		this.sort(); 
+	}
 	/**
 	 * 
 	 */
 	public void deleteAllScores() {
-		// TODO implement me
+
+	//Limpa a lista de scores.
+		
+		this.scores.clear();
 	}
 
-	
 	/**
 	 * @param index
 	 */
 	public void deleteScore(int index) {
-		// TODO implement me
+	
+	//Deleta um Score, e reorganiza todos os restantes subtraindo 1 de seus índices.
+		
+		this.scores.remove(index);
 	}
 
 	
-	/**
-	 * 
-	 */
-	public void persist() {
-		// TODO implement me
+	private void sort(){
+		
+	//Ordena a lista da scores baseado no score de cada jogador incluso.
+		
+		Collections.sort(scores, new Comparator<Player>() {
+	        @Override
+	        public int compare(Player player1, Player player2)
+	        {
+	        	return Integer.valueOf(player1.getScore()).compareTo(Integer.valueOf(player2.getScore()));
+	        }
+	    });
+		
 	}
+	
+	/**
+	 */ 
+
 
 }
 
