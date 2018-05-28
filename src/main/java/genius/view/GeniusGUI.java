@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 
 import javax.swing.Timer;
 import javax.swing.AbstractButton;
@@ -40,19 +39,19 @@ public class GeniusGUI extends AbstractButton {
 	
 					if (x > 0 && x < width / 2 && y > 0 && y < height / 2)
 					{
-						modifier = Arrays.asList(Button.values()).indexOf(Button.GREEN);
+						modifier = Button.GREEN.ordinal();
 					}
 					else if (x > width / 2 && x < width && y > 0 && y < height / 2)
 					{
-						modifier = Arrays.asList(Button.values()).indexOf(Button.RED);
+						modifier = Button.RED.ordinal();
 					}
 					else if (x > 0 && x < width / 2 && y > height / 2 && y < height)
 					{
-						modifier = Arrays.asList(Button.values()).indexOf(Button.BLUE);
+						modifier = Button.BLUE.ordinal();
 					}
 					else if (x > width / 2 && x < width && y > height / 2 && y < height)
 					{
-						modifier = Arrays.asList(Button.values()).indexOf(Button.YELLOW);
+						modifier = Button.YELLOW.ordinal();
 					}
 					
 					ActionEvent ae = new ActionEvent(e, e.getID(), "click", 0, modifier);
