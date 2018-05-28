@@ -19,19 +19,18 @@ import java.util.Comparator;
  *
  */
 public class Scores extends java.util.Observable implements Serializable{
-	/**
-	 * 
-	 */
+	
+	
+	private static final long serialVersionUID = 4258750736263856738L;
+	
 	private List<Player> scores;
 
 
-	/**
-	 * 
-	 */
+	
 	public Scores(){
 
-		this.scores = new ArrayList<Player>();
 		
+		this.scores = new ArrayList<Player>();
 	}
 	/**
 	 *
