@@ -10,6 +10,11 @@ package genius.controller;
 import genius.view.GameDialog;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.swing.Timer;
+
 import genius.model.Button;
 import genius.model.Game;
 
@@ -24,6 +29,7 @@ public class GameController implements java.awt.event.ActionListener {
 	
 	private int score;
 	private int sequenceIndex;
+	private SequenceAnimator animator;
 	
 	private static final int DIFFICULTY = 10;
 
@@ -34,6 +40,7 @@ public class GameController implements java.awt.event.ActionListener {
 		gameModel.addObserver(gameView);
 		gameView.addController(this);
 		gameView.setVisible(true);
+		animator = null;
 		begin();
 	}
 
@@ -45,10 +52,12 @@ public class GameController implements java.awt.event.ActionListener {
 	}
 	
 	public void playSequence() {
-		for(int i = 0; i <= score; i++) {
-			Button button = gameModel.getSequence().get(i);
-			gameView.getGui().setPressedButton(button);
+		if(animator == null) {
+			animator = new SequenceAnimator();
 		}
+		List<Button> sequence = gameModel.getSequence().subList(0, score+1);
+		animator.setSequence (sequence);
+		animator.play();
 	}
 
 
@@ -67,15 +76,15 @@ public class GameController implements java.awt.event.ActionListener {
 			if(gameModel.getSequence().get(sequenceIndex) == pressedButtonColor) {
 				if(sequenceIndex < score) {
 					sequenceIndex++;
-					System.out.println("Right");
 				} else { // hit a full sequence
 					score++;
 					sequenceIndex = 0;
-					playSequence();
-					System.out.println("Score: " + score);
 					if(score == DIFFICULTY) {
 						System.out.println("You win");
 							gameView.close();
+					} else {
+						playSequence();
+						System.out.println("Score: " + score);
 					}
 				}
 			} else {
@@ -84,11 +93,53 @@ public class GameController implements java.awt.event.ActionListener {
 			}
 		}
 		
+		
 		if(e.getActionCommand() == "wait") {
 			gameView.getGui().setPressedButton(null);
 		}
+	}
+
+	
+	
+	private class SequenceAnimator {
+		private List<Button> sequence;
+		private int  index;
+		private Timer t;
 		
+		public SequenceAnimator() {
+			this.sequence = null;
+			this.index = -1;
+		}
 		
+		public void setSequence(List<Button> sequence) {
+			this.sequence = sequence;
+			this.index = 0;
+		}
+		
+		public void play() {
+			t = new Timer(1000, new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(!isFinished()) {
+						animator.playNext();
+					} else {
+						t.setRepeats(false);
+					}
+				}
+			});
+			t.setRepeats(true);
+			t.start();
+		}
+
+		private void playNext() {
+			Button next = sequence.get(index);
+			gameView.getGui().setPressedButton(next);
+			index++;
+		}
+		
+		private boolean isFinished() {
+			return index == sequence.size();
+		}
 	}
 
 }
