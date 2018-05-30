@@ -39,19 +39,19 @@ public class GeniusGUI extends AbstractButton {
 	
 					if (x > 0 && x < width / 2 && y > 0 && y < height / 2)
 					{
-						modifier = 1;
+						modifier = Button.GREEN.ordinal();
 					}
 					else if (x > width / 2 && x < width && y > 0 && y < height / 2)
 					{
-						modifier = 0;
+						modifier = Button.RED.ordinal();
 					}
 					else if (x > 0 && x < width / 2 && y > height / 2 && y < height)
 					{
-						modifier = 2;
+						modifier = Button.BLUE.ordinal();
 					}
 					else if (x > width / 2 && x < width && y > height / 2 && y < height)
 					{
-						modifier = 3;
+						modifier = Button.YELLOW.ordinal();
 					}
 					
 					ActionEvent ae = new ActionEvent(e, e.getID(), "click", 0, modifier);
