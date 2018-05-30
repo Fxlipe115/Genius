@@ -1,10 +1,10 @@
 /*
- * Final project for the course Técnicas de Construção de Programas
+ * Final project for the course TÃ©cnicas de ConstruÃ§Ã£o de Programas
  * Universidade Federal do Rio Grande do Sul
- * Instituto de Informática
+ * Instituto de InformÃ¡tica
  *
  * Created : May 13, 2018
- * Author  : 
+ * Author  : Henrique Barboza
  */
 package genius.model;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.Comparator;
 
 
 /**
- * @author Graeff
+ * @author Henrique Barboza
  *
  */
 public class Scores extends java.util.Observable implements Serializable{
@@ -37,7 +37,7 @@ public class Scores extends java.util.Observable implements Serializable{
 	 */
 	public void addScore(Player player) {
 		
-	//Adiciona novo jogador � lista da Scores e ordena.	
+	//Adiciona novo jogador à lista da Scores e ordena.	
 	
 		this.scores.add(player);
 		this.sort(); 
@@ -57,7 +57,7 @@ public class Scores extends java.util.Observable implements Serializable{
 	 */
 	public void deleteScore(int index) {
 	
-	//Deleta um Score, e reorganiza todos os restantes subtraindo 1 de seus �ndices.
+	//Deleta um Score, e reorganiza todos os restantes subtraindo 1 de seus índices.
 		
 		this.scores.remove(index);
 	}
