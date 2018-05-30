@@ -50,6 +50,14 @@ public class SettingsController {
 	public void setMode() {
 		// TODO implement me
 	}
+	
+	
+	/**
+	 * 
+	 */
+	public void setVolume() {
+		// TODO implement me
+	}
 
 }
 
