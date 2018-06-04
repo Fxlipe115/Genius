@@ -18,6 +18,11 @@ public class Player {
 	private String name;
 	private int score;
 	
+	public Player() {
+		this.name = new String();
+		this.score = 0;
+	}
+	
 	public Player(String name, int score) {
 		this.name = name;
 		this.score = score;
@@ -37,7 +42,11 @@ public class Player {
 
 	public void setScore(int score) {
 		this.score = score;
-	}	
+	}
+	
+	public void incrementScore() {
+		this.score++;
+	}
 	
 }
 
