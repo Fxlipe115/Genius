@@ -54,6 +54,11 @@ public class ScoresController implements ActionListener {
 	}
 
 
+	public ScoresTableModel getScoresModel() {
+		return scoresModel;
+	}
+
+
 	public void deleteScores() {
 		int response = JOptionPane.showConfirmDialog(scoresView, "Are you sure?", "Delete all scores",
 	        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
