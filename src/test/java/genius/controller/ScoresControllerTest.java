@@ -13,7 +13,7 @@ public class ScoresControllerTest {
 	@Test
 	public void testSaveLoad() {
 		ScoresController scSave = new ScoresController();
-		scSave.deleteScores();
+		scSave.deleteScores(false);
 		scSave.addScore(new Player("a", 1));
 		scSave.addScore(new Player("b", 2));
 		scSave.addScore(new Player("c", 3));

@@ -59,10 +59,13 @@ public class ScoresController implements ActionListener {
 	}
 
 
-	public void deleteScores() {
-		int response = JOptionPane.showConfirmDialog(scoresView, "Are you sure?", "Delete all scores",
-	        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-	    if (response == JOptionPane.YES_OPTION) {
+	public void deleteScores(boolean askConfirmation) {
+		int response = JOptionPane.YES_OPTION;
+		if(askConfirmation) {
+			response = JOptionPane.showConfirmDialog(scoresView, "Are you sure?", "Delete all scores",
+					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		}
+	    if(response == JOptionPane.YES_OPTION) {
 	    	scoresModel.getScores().deleteAllScores();
 	    	scoresModel.fireTableDataChanged();
 	    	saveScores();
@@ -71,8 +74,11 @@ public class ScoresController implements ActionListener {
 
 
 	public void addScore(Player player) {
-		String name = JOptionPane.showInputDialog(scoresView, "New score", "Insert your name", JOptionPane.PLAIN_MESSAGE);
-		if (name != null) {
+		String name = player.getName();
+		if(name.isEmpty()) {
+			name = JOptionPane.showInputDialog(scoresView, "New score", "Insert your name", JOptionPane.PLAIN_MESSAGE);
+		}
+		if(name != null) {
 			if(!name.isEmpty()) {
 				player.setName(name);
 				scoresModel.getScores().addScore(player);
@@ -121,7 +127,7 @@ public class ScoresController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e);
 		if(e.getActionCommand() == "Clear scores") {
-			this.deleteScores();
+			this.deleteScores(true);
 		}
 		
 	}
