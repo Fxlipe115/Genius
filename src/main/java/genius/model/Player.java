@@ -8,13 +8,14 @@
  */
 package genius.model;
 
+import java.io.Serializable;
 
 /**
  * @author Matheus
  *
  */
-public class Player {
-	
+public class Player implements Serializable {
+	private static final long serialVersionUID = -4326388715150172472L;
 	private String name;
 	private int score;
 	

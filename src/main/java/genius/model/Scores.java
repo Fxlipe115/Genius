@@ -42,6 +42,10 @@ public class Scores extends java.util.Observable implements Serializable{
 		this.scores.add(player);
 		this.sort(); 
 	}
+	
+	public List<Player> getScores() {
+		return scores;
+	}
 	/**
 	 * 
 	 */
@@ -67,13 +71,13 @@ public class Scores extends java.util.Observable implements Serializable{
 		
 	//Ordena a lista da scores baseado no score de cada jogador incluso.
 		
-		Collections.sort(scores, new Comparator<Player>() {
+		Collections.sort(scores, Collections.reverseOrder(new Comparator<Player>() {
 	        @Override
 	        public int compare(Player player1, Player player2)
 	        {
 	        	return Integer.valueOf(player1.getScore()).compareTo(Integer.valueOf(player2.getScore()));
 	        }
-	    });
+	    }));
 		
 	}
 	
