@@ -9,6 +9,9 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Timer;
 import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
+import javax.swing.DefaultButtonModel;
+
 import genius.model.Button;
 
 import java.awt.event.ActionEvent;
@@ -21,19 +24,23 @@ public class GeniusGUI extends AbstractButton {
 	private int width;
 	private int height;
 	
+	private ButtonModel model;
+	
 	private static final Color GREEN_BUTTON_COLOR = Color.GREEN;
 	private static final Color RED_BUTTON_COLOR = Color.RED;
 	private static final Color YELLOW_BUTTON_COLOR = Color.YELLOW;
 	private static final Color BLUE_BUTTON_COLOR = Color.BLUE;
 
 	public GeniusGUI(int width, int height) {
+		model = new DefaultButtonModel();
+		setModel(model);
 		this.pressedButton = null;
 		this.width = width;
 		this.height = height;
 		this.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(pressedButton == null) {
+				if(pressedButton == null && model.isEnabled()) {
 					int x = e.getX(), y = e.getY();
 					int modifier = 0;
 	

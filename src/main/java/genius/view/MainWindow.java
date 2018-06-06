@@ -10,6 +10,8 @@ package genius.view;
 
 import javax.swing.JFrame;
 
+import genius.controller.GameController;
+
 public class MainWindow {
 
 	private JFrame frame;
@@ -26,10 +28,24 @@ public class MainWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		int contentWidth = 450;
+		int contentHeight = 450;
+		int widthCorrection = 6;
+		int heightCorrection = 30;
+		int frameWidth = contentWidth + widthCorrection;
+		int frameHeight = contentHeight + heightCorrection;
+		
+		frame = new JFrame("Genius");
+		frame.setSize(frameWidth, frameHeight);
 		frame.setVisible(true);
+		frame.setResizable(false);
+		
+		GameController gc = new GameController(contentWidth, contentHeight);
+		frame.add(gc.getGameView());
+		
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 	}
 
 }
