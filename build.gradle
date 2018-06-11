@@ -28,5 +28,7 @@ dependencies {
     
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    
+    compile 'jfugue:jfugue:4.0.3'
 }
 
