@@ -15,6 +15,8 @@ import java.util.List;
 
 import javax.swing.Timer;
 
+import org.jfugue.theory.Note;
+
 import genius.model.Button;
 import genius.model.Game;
 import genius.model.Player;
@@ -174,16 +176,16 @@ public class GameController implements java.awt.event.ActionListener {
 	
 	private class SoundPlayer {
 
-		private final String GREEN_BUTTON_NOTE = "E4i";
-		private final String BLUE_BUTTON_NOTE = "Ei";
-		private final String RED_BUTTON_NOTE ="Ai";
-		private final String YELLOW_BUTTON_NOTE = "C#i";
+		private final Note GREEN_BUTTON_NOTE = new Note("E4i");
+		private final Note BLUE_BUTTON_NOTE = new Note("Ei");
+		private final Note RED_BUTTON_NOTE = new Note("Ai");
+		private final Note YELLOW_BUTTON_NOTE = new Note("C#i");
 		
 		private org.jfugue.player.Player player = new org.jfugue.player.Player();
 
 		public void playSound(Button pressedButtonColor) {
-			final String note = getNote(pressedButtonColor);
-			if(note != null) {				
+			final Note note = getNote(pressedButtonColor);
+			if(note != null) {
 				new Thread(new Runnable() {
 				     public void run() {
 				    	 player.play(note);
@@ -192,7 +194,7 @@ public class GameController implements java.awt.event.ActionListener {
 			}
 		}
 
-		private String getNote(Button pressedButtonColor) {
+		private Note getNote(Button pressedButtonColor) {
 			switch (pressedButtonColor) {			
 			case GREEN:
 				return GREEN_BUTTON_NOTE;
