@@ -179,7 +179,7 @@ public class GameController implements java.awt.event.ActionListener {
 		private final String RED_BUTTON_NOTE ="Ai";
 		private final String YELLOW_BUTTON_NOTE = "C#i";
 		
-		private org.jfugue.Player player = new org.jfugue.Player();
+		private org.jfugue.player.Player player = new org.jfugue.player.Player();
 
 		public void playSound(Button pressedButtonColor) {
 			final String note = getNote(pressedButtonColor);
