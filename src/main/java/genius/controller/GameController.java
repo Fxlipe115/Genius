@@ -15,6 +15,8 @@ import java.util.List;
 
 import javax.swing.Timer;
 
+import org.jfugue.theory.Note;
+
 import genius.model.Button;
 import genius.model.Game;
 import genius.model.Player;
@@ -31,6 +33,7 @@ public class GameController implements java.awt.event.ActionListener {
 	private Player score;
 	private int sequenceIndex;
 	private SequenceAnimator animator;
+	private SoundPlayer soundPlayer;
 	
 	private static final int DIFFICULTY = 10;
 
@@ -43,6 +46,7 @@ public class GameController implements java.awt.event.ActionListener {
 		gameView.setVisible(true);
 		animator = null;
 		score = null;
+		soundPlayer = null;
 	}
 
 	public GameDialog getGameView() {
@@ -77,6 +81,7 @@ public class GameController implements java.awt.event.ActionListener {
 			Button pressedButtonColor = Button.values()[e.getModifiers()];
 			
 			gameView.getGui().setPressedButton(pressedButtonColor);
+			playSound(pressedButtonColor);
 			
 			if(gameModel.getSequence().get(sequenceIndex) == pressedButtonColor) {
 				if(sequenceIndex < score.getScore()) {
@@ -118,7 +123,12 @@ public class GameController implements java.awt.event.ActionListener {
 		}
 	}
 
-	
+	private void playSound(Button pressedButtonColor) {
+		if(soundPlayer == null) {
+			soundPlayer = new SoundPlayer();
+		}
+		soundPlayer.playSound(pressedButtonColor);
+	}	
 	
 	private class SequenceAnimator {
 		private List<Button> sequence;
@@ -155,11 +165,48 @@ public class GameController implements java.awt.event.ActionListener {
 			gameView.getGui().setEnabled(false);
 			gameView.getBeginButton().setEnabled(false);
 			gameView.getGui().setPressedButton(next);
+			playSound(next);
 			index++;
 		}
 		
 		private boolean isFinished() {
 			return index == sequence.size();
+		}
+	}
+	
+	private class SoundPlayer {
+
+		private final Note GREEN_BUTTON_NOTE = new Note("E4i");
+		private final Note BLUE_BUTTON_NOTE = new Note("Ei");
+		private final Note RED_BUTTON_NOTE = new Note("Ai");
+		private final Note YELLOW_BUTTON_NOTE = new Note("C#i");
+		
+		private org.jfugue.player.Player player = new org.jfugue.player.Player();
+
+		public void playSound(Button pressedButtonColor) {
+			final Note note = getNote(pressedButtonColor);
+			if(note != null) {
+				new Thread(new Runnable() {
+				     public void run() {
+				    	 player.play(note);
+				     }
+				}).start();
+			}
+		}
+
+		private Note getNote(Button pressedButtonColor) {
+			switch (pressedButtonColor) {			
+			case GREEN:
+				return GREEN_BUTTON_NOTE;
+			case BLUE:
+				return BLUE_BUTTON_NOTE;
+			case RED:
+				return RED_BUTTON_NOTE;
+			case YELLOW:
+				return YELLOW_BUTTON_NOTE;
+			default:
+				return null;
+			}
 		}
 	}
 

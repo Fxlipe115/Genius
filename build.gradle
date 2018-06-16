@@ -13,20 +13,18 @@ apply plugin: 'java-library'
 repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+    jcenter() 
 }
-
-dependencies {
+	
+dependencies { 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api 'org.apache.commons:commons-math3:3.6.1'
-    
-    compile group: 'com.miglayout', name: 'miglayout-swing', version: '5.1'
-    
+    api 'org.apache.commons:commons-math3:3.6.1'   
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation 'com.google.guava:guava:23.0'
     
     // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'  
+	
+	compile files('libs/jfugue-5.0.9.jar')
 }
-
