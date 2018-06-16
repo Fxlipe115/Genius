@@ -14,5 +14,15 @@ package genius.model;
  *
  */
 public enum Difficulty {
-	EASY, MEDIUM, HARD;
+	EASY(8), MEDIUM(14), HARD(20), EXTREME(31);
+	
+	private final int difficulty;
+
+	private Difficulty(int difficulty) {
+    	this.difficulty = difficulty;
+	}
+    
+    public int getValue(){
+        return difficulty;
+    }
 }

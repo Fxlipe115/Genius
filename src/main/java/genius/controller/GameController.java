@@ -20,6 +20,7 @@ import org.jfugue.theory.Note;
 import genius.model.Button;
 import genius.model.Game;
 import genius.model.Player;
+import genius.model.Settings;
 
 
 /**
@@ -34,11 +35,19 @@ public class GameController implements java.awt.event.ActionListener {
 	private int sequenceIndex;
 	private SequenceAnimator animator;
 	private SoundPlayer soundPlayer;
+	private int difficulty;
+	private boolean hasSound;
+	private int width;
+	private int height;
 	
-	private static final int DIFFICULTY = 10;
 
 	
-	public GameController(int width, int height){
+	public GameController(){
+		width = Settings.INSTANCE.getSize().width;
+		height = Settings.INSTANCE.getSize().height;
+		difficulty = Settings.INSTANCE.getDifficulty().getValue(); 
+		hasSound = Settings.INSTANCE.hasSound();
+		
 		gameModel = new Game();
 		gameView = new GameDialog(width, height);
 		gameModel.addObserver(gameView);
@@ -47,14 +56,14 @@ public class GameController implements java.awt.event.ActionListener {
 		animator = null;
 		score = null;
 		soundPlayer = null;
-	}
+}
 
 	public GameDialog getGameView() {
 		return gameView;
 	}
 
 	public void begin() {
-		gameModel.generateSequence(DIFFICULTY);
+		gameModel.generateSequence(difficulty);
 		score = new Player();
 		sequenceIndex = 0;
 		playSequence();
@@ -89,7 +98,7 @@ public class GameController implements java.awt.event.ActionListener {
 				} else { // hit a full sequence
 					score.incrementScore();;
 					sequenceIndex = 0;
-					if(score.getScore() == DIFFICULTY) {
+					if(score.getScore() == difficulty) {
 						gameView.showWinMessage();
 					} else {
 						playSequence();
@@ -188,7 +197,9 @@ public class GameController implements java.awt.event.ActionListener {
 			if(note != null) {
 				new Thread(new Runnable() {
 				     public void run() {
-				    	 player.play(note);
+				    	 if(hasSound) {
+				    		 player.play(note);
+				    	 }
 				     }
 				}).start();
 			}
