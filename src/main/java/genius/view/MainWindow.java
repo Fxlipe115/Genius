@@ -11,6 +11,7 @@ package genius.view;
 import javax.swing.JFrame;
 
 import genius.controller.GameController;
+import genius.model.Settings;
 
 public class MainWindow {
 
@@ -28,8 +29,9 @@ public class MainWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		int contentWidth = 450;
-		int contentHeight = 450;
+		System.out.println(Settings.INSTANCE.getSize());
+		int contentWidth = Settings.INSTANCE.getSize().width;
+		int contentHeight = Settings.INSTANCE.getSize().height;
 		int widthCorrection = 6;
 		int heightCorrection = 30;
 		int frameWidth = contentWidth + widthCorrection;
@@ -40,7 +42,7 @@ public class MainWindow {
 		frame.setVisible(true);
 		frame.setResizable(false);
 		
-		GameController gc = new GameController(contentWidth, contentHeight);
+		GameController gc = new GameController();
 		frame.add(gc.getGameView());
 		
 		

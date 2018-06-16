@@ -8,8 +8,14 @@
  */
 package genius;
 
+import java.awt.Frame;
+
+import javax.swing.JFrame;
+
 import genius.controller.ApplicationController;
 import genius.controller.GameController;
+import genius.controller.ScoresController;
+import genius.model.Settings;
 
 /**
  * @author Graeff
@@ -23,6 +29,11 @@ public class Main {
 	public static void main(String[] args) {
 		ApplicationController applicationController = new ApplicationController();
 		applicationController.initApplication();
+//		Frame f = new JFrame();
+//		ScoresController sc = new ScoresController();
+//		f.add(sc.getScoresView());
+//		f.setSize(400, 400);
+//		f.setVisible(true);
 	}
 
 }
