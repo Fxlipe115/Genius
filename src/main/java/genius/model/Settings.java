@@ -8,6 +8,7 @@
  */
 package genius.model;
 
+import java.awt.Dimension;
 
 /**
  * @author Graeff
@@ -20,7 +21,9 @@ public enum Settings {
 
 	private Mode mode;
 	
-	private int volume;
+	private boolean sound;
+	
+	private Dimension size;
 
 	public Difficulty getDifficulty() {
 		return difficulty;
@@ -38,12 +41,20 @@ public enum Settings {
 		this.mode = mode;
 	}
 
-	public int getVolume() {
-		return volume;
+	public Boolean hasSound() {
+		return sound;
 	}
 
-	public void setVolume(int volume) {
-		this.volume = volume;
+	public void setSound(boolean sound) {
+		this.sound = sound;
+	}
+
+	public Dimension getSize() {
+		return size;
+	}
+
+	public void setSize(Dimension size) {
+		this.size = size;
 	}
 
 }
