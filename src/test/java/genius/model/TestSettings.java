@@ -22,7 +22,7 @@ public class TestSettings {
 		assertEquals(Mode.Default, Settings.INSTANCE.getMode());
 		assertEquals(Difficulty.EASY, Settings.INSTANCE.getDifficulty());
 		assertEquals(true, Settings.INSTANCE.hasSound());
-		assertEquals(new Dimension(0, 0), Settings.INSTANCE.getSize());
+		assertEquals(new Dimension(600, 600), Settings.INSTANCE.getSize());
 	}
 	
 	@Test

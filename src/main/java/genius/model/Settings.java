@@ -35,7 +35,7 @@ public enum Settings {
 		difficulty = Difficulty.EASY;
 		mode = Mode.Default;
 		sound = true;
-		size = new Dimension();
+		size = new Dimension(600,600);
 	}
 
 	public Difficulty getDifficulty() {
