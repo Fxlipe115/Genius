@@ -7,8 +7,6 @@
  * Author  : Graeff
  */
 package genius.controller;
-import genius.view.GameDialog;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -21,6 +19,7 @@ import genius.model.Button;
 import genius.model.Game;
 import genius.model.Player;
 import genius.model.Settings;
+import genius.view.GameDialog;
 
 
 /**
@@ -43,8 +42,8 @@ public class GameController implements java.awt.event.ActionListener {
 
 	
 	public GameController(){
-		width = Settings.INSTANCE.getSize().width;
-		height = Settings.INSTANCE.getSize().height;
+		width = Settings.INSTANCE.getSize().getValue().width;
+		height = Settings.INSTANCE.getSize().getValue().height;
 		difficulty = Settings.INSTANCE.getDifficulty().getValue(); 
 		hasSound = Settings.INSTANCE.hasSound();
 		

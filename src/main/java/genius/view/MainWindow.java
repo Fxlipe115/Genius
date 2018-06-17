@@ -30,8 +30,8 @@ public class MainWindow {
 	 */
 	private void initialize() {
 		System.out.println(Settings.INSTANCE.getSize());
-		int contentWidth = Settings.INSTANCE.getSize().width;
-		int contentHeight = Settings.INSTANCE.getSize().height;
+		int contentWidth = Settings.INSTANCE.getSize().getValue().width;
+		int contentHeight = Settings.INSTANCE.getSize().getValue().height;
 		int widthCorrection = 6;
 		int heightCorrection = 30;
 		int frameWidth = contentWidth + widthCorrection;

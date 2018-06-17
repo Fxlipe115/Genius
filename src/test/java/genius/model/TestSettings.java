@@ -22,7 +22,7 @@ public class TestSettings {
 		assertEquals(Mode.Default, Settings.INSTANCE.getMode());
 		assertEquals(Difficulty.EASY, Settings.INSTANCE.getDifficulty());
 		assertEquals(true, Settings.INSTANCE.hasSound());
-		assertEquals(new Dimension(600, 600), Settings.INSTANCE.getSize());
+		assertEquals(ScreenSize._640x480, Settings.INSTANCE.getSize());
 	}
 	
 	@Test
@@ -30,7 +30,7 @@ public class TestSettings {
 		Difficulty dif = Difficulty.MEDIUM;
 		Mode mode = Mode.Default;
 		boolean sound = false;
-		Dimension size = new Dimension(1920, 1080);
+		ScreenSize size = ScreenSize._1600x1200;
 		String fileName = "settings_test.properties";
 		
 		Settings.INSTANCE.setDifficulty(dif);
@@ -41,7 +41,7 @@ public class TestSettings {
 		
 		Settings.INSTANCE.setDifficulty(Difficulty.HARD);
 		Settings.INSTANCE.setSound(!sound);
-		Settings.INSTANCE.setSize(new Dimension());
+		Settings.INSTANCE.setSize(ScreenSize._640x480);
 		assertNotEquals(dif, Settings.INSTANCE.getDifficulty());
 		assertNotEquals(sound, Settings.INSTANCE.hasSound());
 		assertNotEquals(size, Settings.INSTANCE.getSize());

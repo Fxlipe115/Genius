@@ -29,13 +29,13 @@ public enum Settings {
 	
 	private boolean sound;
 	
-	private Dimension size;
+	private ScreenSize size;
 	
 	private Settings() {
 		difficulty = Difficulty.EASY;
 		mode = Mode.Default;
 		sound = true;
-		size = new Dimension(600,600);
+		size = ScreenSize._640x480;
 	}
 
 	public Difficulty getDifficulty() {
@@ -62,11 +62,11 @@ public enum Settings {
 		this.sound = sound;
 	}
 
-	public Dimension getSize() {
+	public ScreenSize getSize() {
 		return size;
 	}
 
-	public void setSize(Dimension size) {
+	public void setSize(ScreenSize size) {
 		this.size = size;
 	}
 	
@@ -80,8 +80,7 @@ public enum Settings {
 		    props.setProperty("difficulty", String.valueOf(difficulty));
 		    props.setProperty("mode", String.valueOf(mode));
 		    props.setProperty("sound", String.valueOf(sound));
-		    props.setProperty("width", String.valueOf((int)size.getWidth()));
-		    props.setProperty("height", String.valueOf((int)size.getHeight()));
+		    props.setProperty("size", String.valueOf(size));
 		    props.store(writer, "settings");
 		    
 		    writer.close();
@@ -97,7 +96,13 @@ public enum Settings {
 		    FileReader reader = new FileReader(settingsFile);
 		    Properties props = new Properties();
 		    props.load(reader);
-		 
+
+		    try {
+		    	String s = props.getProperty("size", ScreenSize._640x480.toString());
+		    	size = ScreenSize.valueOf("_"+s);
+		    } catch (IllegalArgumentException e) {
+				size = ScreenSize._640x480;
+			}
 		    try {
 		    	difficulty = Difficulty.valueOf(props.getProperty("difficulty", Difficulty.EASY.toString()));
 		    } catch (IllegalArgumentException e) {
@@ -109,8 +114,6 @@ public enum Settings {
 		    	mode = Mode.Default;
 			}
 		    sound = Boolean.parseBoolean(props.getProperty("sound", "true"));
-		    size.width = Integer.parseInt(props.getProperty("width", "600"));
-		    size.height = Integer.parseInt(props.getProperty("height", "600"));
 
 		    reader.close();
 		} catch (IOException e) {

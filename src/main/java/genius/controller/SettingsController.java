@@ -7,6 +7,14 @@
  * Author  : 
  */
 package genius.controller;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
+
+import genius.model.Difficulty;
+import genius.model.Mode;
+import genius.model.ScreenSize;
 import genius.model.Settings;
 import genius.view.SettingsDialog;
 
@@ -15,48 +23,48 @@ import genius.view.SettingsDialog;
  * @author Graeff
  *
  */
-public class SettingsController {
-	/**
-	 * 
-	 */
+public class SettingsController implements ActionListener {
+	
 	private Settings settingsModel;
-
-	/**
-	 * 
-	 */
 	private SettingsDialog settingsView;
 
-
-	/**
-	 * 
-	 */
 	public SettingsController(){
 		settingsModel = Settings.INSTANCE;
 		settingsView = new SettingsDialog();
+		settingsView.addSettingsController(this);
+		
+		settingsView.setScreenSizeComboBoxIndex(settingsModel.getSize().ordinal());
+		settingsView.setGameModeComboBoxIndex(settingsModel.getMode().ordinal());
+		settingsView.setDifficultyComboBoxIndex(settingsModel.getDifficulty().ordinal());
+		settingsView.setMuteCheckBoxState(!settingsModel.hasSound());
+	}
+	
+	public SettingsController(ActionListener parent) {
+		this();
+		settingsView.addBackButtonController(parent);
 	}
 
-	
-	/**
-	 * 
-	 */
-	public void setDifficulty() {
-		// TODO implement me
+	public SettingsDialog getSettingsView() {
+		return settingsView;
 	}
 
-	
-	/**
-	 * 
-	 */
-	public void setMode() {
-		// TODO implement me
-	}
-	
-	
-	/**
-	 * 
-	 */
-	public void setVolume() {
-		// TODO implement me
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == settingsView.getScreenSizeComboBox()) {
+			settingsModel.setSize(ScreenSize.values()[((JComboBox) e.getSource()).getSelectedIndex()]);
+		}
+		
+		if(e.getSource() == settingsView.getGameModeComboBox()) {
+			settingsModel.setMode(Mode.values()[((JComboBox) e.getSource()).getSelectedIndex()]);
+		}
+		
+		if(e.getSource() == settingsView.getDifficultyComboBox()) {
+			settingsModel.setDifficulty(Difficulty.values()[((JComboBox) e.getSource()).getSelectedIndex()]);
+		}
+		
+		if(e.getSource() == settingsView.getMuteCheckBox()) {
+			settingsModel.setSound(((JCheckBox) e.getSource()).isSelected());
+		}
 	}
 
 }
