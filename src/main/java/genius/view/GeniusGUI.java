@@ -161,10 +161,6 @@ public class GeniusGUI extends AbstractButton {
 		int verticalRectY = (height/2) - (verticalRectHeight/2);
 		g.fillRect(verticalRectX, verticalRectY, verticalRectWidth, verticalRectHeight);
 
-		g.setColor(Color.GRAY);
-		((Graphics2D) g).setStroke(new BasicStroke(200));
-		g.drawOval(-100, -100, width + 200, height + 200);
-
 		g.setColor(Color.BLACK);
 		((Graphics2D) g).setStroke(new BasicStroke(10));
 		g.drawOval(0, 0, width, height);
