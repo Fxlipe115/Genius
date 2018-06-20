@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Arc2D;
 
 import javax.swing.Timer;
 import javax.swing.AbstractButton;
@@ -139,7 +140,7 @@ public class GeniusGUI extends AbstractButton {
 			g.setColor(GREEN_BUTTON_COLOR.darker());
 		}
 
-		g.fillRect(0, 0, width / 2, height / 2);
+		((Graphics2D) g).fill(new Arc2D.Double(10, 10, height - 20, height - 20, 180, -90, Arc2D.PIE));
 	}
 
 	private void drawRedButton(Graphics g) {
@@ -149,7 +150,7 @@ public class GeniusGUI extends AbstractButton {
 			g.setColor(RED_BUTTON_COLOR.darker());
 		}
 
-		g.fillRect(width / 2, 0, width / 2, height / 2);
+		((Graphics2D) g).fill(new Arc2D.Double(10, 10, height - 20, height - 20, 0, 90, Arc2D.PIE));
 	}
 
 	private void drawBlueButton(Graphics g) {
@@ -159,7 +160,7 @@ public class GeniusGUI extends AbstractButton {
 			g.setColor(BLUE_BUTTON_COLOR.darker());
 		}
 
-		g.fillRect(0, height / 2, width / 2, height / 2);
+		((Graphics2D) g).fill(new Arc2D.Double(10, 10, height - 20, height - 20, 180, 90, Arc2D.PIE));
 	}
 
 	private void drawYellowButton(Graphics g) {
@@ -169,7 +170,7 @@ public class GeniusGUI extends AbstractButton {
 			g.setColor(YELLOW_BUTTON_COLOR.darker());
 		}
 
-		g.fillRect(width / 2, height / 2, width / 2, height / 2);
+		((Graphics2D) g).fill(new Arc2D.Double(10, 10, height - 20, height - 20, 0, -90, Arc2D.PIE));
 	}
 	
 }
