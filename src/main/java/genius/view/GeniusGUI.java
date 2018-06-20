@@ -96,49 +96,7 @@ public class GeniusGUI extends AbstractButton {
 	public void paint(Graphics g) {
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		if (pressedButton == Button.GREEN)
-		{
-			g.setColor(GREEN_BUTTON_COLOR.brighter());
-		}
-		else
-		{
-			g.setColor(GREEN_BUTTON_COLOR.darker());
-		}
-
-		g.fillRect(0, 0, width/2, height/2);
-
-		if (pressedButton == Button.RED)
-		{
-			g.setColor(RED_BUTTON_COLOR.brighter());
-		}
-		else
-		{
-			g.setColor(RED_BUTTON_COLOR.darker());
-		}
-
-		g.fillRect(width/2, 0, width/2, height/2);
-
-		if (pressedButton == Button.BLUE)
-		{
-			g.setColor(BLUE_BUTTON_COLOR.brighter());
-		}
-		else
-		{
-			g.setColor(BLUE_BUTTON_COLOR.darker());
-		}
-
-		g.fillRect(0, height/2, width/2, height/2);
-
-		if (pressedButton == Button.YELLOW)
-		{
-			g.setColor(YELLOW_BUTTON_COLOR.brighter());
-		}
-		else
-		{
-			g.setColor(YELLOW_BUTTON_COLOR.darker());
-		}
-
-		g.fillRect(width / 2, height / 2, width / 2, height / 2);
+		drawButtons(g);
 
 		g.setColor(Color.BLACK);
 		int roundRectWidth = 7 * width / 16;
@@ -164,6 +122,70 @@ public class GeniusGUI extends AbstractButton {
 		g.setColor(Color.BLACK);
 		((Graphics2D) g).setStroke(new BasicStroke(10));
 		g.drawOval(0, 0, width, height);
+	}
+
+
+	private void drawButtons(Graphics g) {
+		drawGreenButton(g);
+		drawRedButton(g);
+		drawBlueButton(g);
+		drawYellowButton(g);
+	}
+
+
+	private void drawYellowButton(Graphics g) {
+		if (pressedButton == Button.YELLOW)
+		{
+			g.setColor(YELLOW_BUTTON_COLOR.brighter());
+		}
+		else
+		{
+			g.setColor(YELLOW_BUTTON_COLOR.darker());
+		}
+
+		g.fillRect(width / 2, height / 2, width / 2, height / 2);
+	}
+
+
+	private void drawBlueButton(Graphics g) {
+		if (pressedButton == Button.BLUE)
+		{
+			g.setColor(BLUE_BUTTON_COLOR.brighter());
+		}
+		else
+		{
+			g.setColor(BLUE_BUTTON_COLOR.darker());
+		}
+
+		g.fillRect(0, height/2, width/2, height/2);
+	}
+
+
+	private void drawRedButton(Graphics g) {
+		if (pressedButton == Button.RED)
+		{
+			g.setColor(RED_BUTTON_COLOR.brighter());
+		}
+		else
+		{
+			g.setColor(RED_BUTTON_COLOR.darker());
+		}
+
+		g.fillRect(width/2, 0, width/2, height/2);
+	}
+
+
+	private void drawGreenButton(Graphics g) {
+		if (pressedButton == Button.GREEN)
+		{
+			g.setColor(GREEN_BUTTON_COLOR.brighter());
+		}
+		else
+		{
+			g.setColor(GREEN_BUTTON_COLOR.darker());
+		}
+
+		g.fillRect(0, 0, width/2, height/2);
 	}
 	
 }
