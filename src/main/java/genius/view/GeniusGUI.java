@@ -131,61 +131,45 @@ public class GeniusGUI extends AbstractButton {
 		drawBlueButton(g);
 		drawYellowButton(g);
 	}
+	
+	private void drawGreenButton(Graphics g) {
+		if (pressedButton == Button.GREEN) {
+			g.setColor(GREEN_BUTTON_COLOR.brighter());
+		} else {
+			g.setColor(GREEN_BUTTON_COLOR.darker());
+		}
 
+		g.fillRect(0, 0, width / 2, height / 2);
+	}
+
+	private void drawRedButton(Graphics g) {
+		if (pressedButton == Button.RED) {
+			g.setColor(RED_BUTTON_COLOR.brighter());
+		} else {
+			g.setColor(RED_BUTTON_COLOR.darker());
+		}
+
+		g.fillRect(width / 2, 0, width / 2, height / 2);
+	}
+
+	private void drawBlueButton(Graphics g) {
+		if (pressedButton == Button.BLUE) {
+			g.setColor(BLUE_BUTTON_COLOR.brighter());
+		} else {
+			g.setColor(BLUE_BUTTON_COLOR.darker());
+		}
+
+		g.fillRect(0, height / 2, width / 2, height / 2);
+	}
 
 	private void drawYellowButton(Graphics g) {
-		if (pressedButton == Button.YELLOW)
-		{
+		if (pressedButton == Button.YELLOW) {
 			g.setColor(YELLOW_BUTTON_COLOR.brighter());
-		}
-		else
-		{
+		} else {
 			g.setColor(YELLOW_BUTTON_COLOR.darker());
 		}
 
 		g.fillRect(width / 2, height / 2, width / 2, height / 2);
-	}
-
-
-	private void drawBlueButton(Graphics g) {
-		if (pressedButton == Button.BLUE)
-		{
-			g.setColor(BLUE_BUTTON_COLOR.brighter());
-		}
-		else
-		{
-			g.setColor(BLUE_BUTTON_COLOR.darker());
-		}
-
-		g.fillRect(0, height/2, width/2, height/2);
-	}
-
-
-	private void drawRedButton(Graphics g) {
-		if (pressedButton == Button.RED)
-		{
-			g.setColor(RED_BUTTON_COLOR.brighter());
-		}
-		else
-		{
-			g.setColor(RED_BUTTON_COLOR.darker());
-		}
-
-		g.fillRect(width/2, 0, width/2, height/2);
-	}
-
-
-	private void drawGreenButton(Graphics g) {
-		if (pressedButton == Button.GREEN)
-		{
-			g.setColor(GREEN_BUTTON_COLOR.brighter());
-		}
-		else
-		{
-			g.setColor(GREEN_BUTTON_COLOR.darker());
-		}
-
-		g.fillRect(0, 0, width/2, height/2);
 	}
 	
 }
