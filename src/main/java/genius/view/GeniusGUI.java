@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Arc2D;
 
 import javax.swing.Timer;
 import javax.swing.AbstractButton;
@@ -96,49 +97,7 @@ public class GeniusGUI extends AbstractButton {
 	public void paint(Graphics g) {
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		if (pressedButton == Button.GREEN)
-		{
-			g.setColor(GREEN_BUTTON_COLOR.brighter());
-		}
-		else
-		{
-			g.setColor(GREEN_BUTTON_COLOR.darker());
-		}
-
-		g.fillRect(0, 0, width/2, height/2);
-
-		if (pressedButton == Button.RED)
-		{
-			g.setColor(RED_BUTTON_COLOR.brighter());
-		}
-		else
-		{
-			g.setColor(RED_BUTTON_COLOR.darker());
-		}
-
-		g.fillRect(width/2, 0, width/2, height/2);
-
-		if (pressedButton == Button.BLUE)
-		{
-			g.setColor(BLUE_BUTTON_COLOR.brighter());
-		}
-		else
-		{
-			g.setColor(BLUE_BUTTON_COLOR.darker());
-		}
-
-		g.fillRect(0, height/2, width/2, height/2);
-
-		if (pressedButton == Button.YELLOW)
-		{
-			g.setColor(YELLOW_BUTTON_COLOR.brighter());
-		}
-		else
-		{
-			g.setColor(YELLOW_BUTTON_COLOR.darker());
-		}
-
-		g.fillRect(width / 2, height / 2, width / 2, height / 2);
+		drawButtons(g);
 
 		g.setColor(Color.BLACK);
 		int roundRectWidth = 7 * width / 16;
@@ -150,24 +109,68 @@ public class GeniusGUI extends AbstractButton {
 		g.fillRoundRect(roundRectX, roundRectY, roundRectWidth, roundRectHeight, roundRectArcWidth, roundRectArcHeight);
 		
 		int horizontalRectWidth = width / 7;
-		int horizontalRectHeight = height;
+		int horizontalRectHeight = height - 10;
 		int horizontalRectX = (width/2) - (horizontalRectWidth/2);
-		int horizontalRectY = 0;
+		int horizontalRectY = 5;
 		g.fillRect(horizontalRectX, horizontalRectY, horizontalRectWidth, horizontalRectHeight);
 		
-		int verticalRectWidth = width;
+		int verticalRectWidth = width - 10;
 		int verticalRectHeight = height / 7;
-		int verticalRectX = 0;
+		int verticalRectX = 5;
 		int verticalRectY = (height/2) - (verticalRectHeight/2);
 		g.fillRect(verticalRectX, verticalRectY, verticalRectWidth, verticalRectHeight);
 
-		g.setColor(Color.GRAY);
-		((Graphics2D) g).setStroke(new BasicStroke(200));
-		g.drawOval(-100, -100, width + 200, height + 200);
-
 		g.setColor(Color.BLACK);
 		((Graphics2D) g).setStroke(new BasicStroke(10));
-		g.drawOval(0, 0, width, height);
+		g.drawOval(5, 5, width - 10, height - 10);
+	}
+
+
+	private void drawButtons(Graphics g) {
+		drawGreenButton(g);
+		drawRedButton(g);
+		drawBlueButton(g);
+		drawYellowButton(g);
+	}
+	
+	private void drawGreenButton(Graphics g) {
+		if (pressedButton == Button.GREEN) {
+			g.setColor(GREEN_BUTTON_COLOR.brighter());
+		} else {
+			g.setColor(GREEN_BUTTON_COLOR.darker());
+		}
+
+		((Graphics2D) g).fill(new Arc2D.Double(10, 10, height - 20, height - 20, 180, -90, Arc2D.PIE));
+	}
+
+	private void drawRedButton(Graphics g) {
+		if (pressedButton == Button.RED) {
+			g.setColor(RED_BUTTON_COLOR.brighter());
+		} else {
+			g.setColor(RED_BUTTON_COLOR.darker());
+		}
+
+		((Graphics2D) g).fill(new Arc2D.Double(10, 10, height - 20, height - 20, 0, 90, Arc2D.PIE));
+	}
+
+	private void drawBlueButton(Graphics g) {
+		if (pressedButton == Button.BLUE) {
+			g.setColor(BLUE_BUTTON_COLOR.brighter());
+		} else {
+			g.setColor(BLUE_BUTTON_COLOR.darker());
+		}
+
+		((Graphics2D) g).fill(new Arc2D.Double(10, 10, height - 20, height - 20, 180, 90, Arc2D.PIE));
+	}
+
+	private void drawYellowButton(Graphics g) {
+		if (pressedButton == Button.YELLOW) {
+			g.setColor(YELLOW_BUTTON_COLOR.brighter());
+		} else {
+			g.setColor(YELLOW_BUTTON_COLOR.darker());
+		}
+
+		((Graphics2D) g).fill(new Arc2D.Double(10, 10, height - 20, height - 20, 0, -90, Arc2D.PIE));
 	}
 	
 }

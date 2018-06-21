@@ -36,8 +36,11 @@ public class GameDialog extends JLayeredPane implements java.util.Observer {
 		
 		this.setSize(width, height);
 		
+		this.setOpaque(true);
+		this.setBackground(Color.GRAY);
+		
 		gui = new GeniusGUI(height, height);
-		gui.setBounds(0, 0, width, height);
+		gui.setBounds((width - height)/2, 0, height, height);
 		gui.setEnabled(false);
 		this.add(gui, DEFAULT_LAYER);
 		
