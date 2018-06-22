@@ -38,9 +38,6 @@ public class MainWindow extends JFrame {
 		this.setVisible(true);
 		this.setResizable(false);
 		
-		GameController gc = new GameController();
-		this.add(gc.getGameView());
-		
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
