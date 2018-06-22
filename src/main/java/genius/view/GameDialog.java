@@ -48,7 +48,7 @@ public class GameDialog extends JLayeredPane implements java.util.Observer {
 		beginButton.setBounds((width/2)-buttonsWidth, height/2, buttonsWidth, buttonsHeight);
 		this.add(beginButton, PALETTE_LAYER);
 		
-		exitButton = new JButton("Exit");
+		exitButton = new JButton("Back");
 		exitButton.setBounds(width/2, height/2, buttonsWidth, buttonsHeight);
 		this.add(exitButton, PALETTE_LAYER);
 		

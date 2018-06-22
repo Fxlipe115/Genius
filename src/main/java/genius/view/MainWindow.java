@@ -13,11 +13,7 @@ import javax.swing.JFrame;
 import genius.controller.GameController;
 import genius.model.Settings;
 
-public class MainWindow {
-
-	private JFrame frame;
-
-	
+public class MainWindow extends JFrame {	
 	/**
 	 * Create the application.
 	 */
@@ -37,17 +33,17 @@ public class MainWindow {
 		int frameWidth = contentWidth + widthCorrection;
 		int frameHeight = contentHeight + heightCorrection;
 		
-		frame = new JFrame("Genius");
-		frame.setSize(frameWidth, frameHeight);
-		frame.setVisible(true);
-		frame.setResizable(false);
+		this.setTitle("Genius");
+		this.setSize(frameWidth, frameHeight);
+		this.setVisible(true);
+		this.setResizable(false);
 		
 		GameController gc = new GameController();
-		frame.add(gc.getGameView());
+		this.add(gc.getGameView());
 		
 		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 	}
 
 }
