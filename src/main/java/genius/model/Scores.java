@@ -46,7 +46,7 @@ public class Scores extends java.util.Observable implements Serializable{
 		this.scores.add(player);
 		this.sort();
 		
-		if(this.scores.size() >= MAX_SCORES)
+		if(this.scores.size() > MAX_SCORES)
 		{
 			this.scores.remove(MAX_SCORES);   //Removes the 11th score, keeps it at 10.
 		}
