@@ -24,6 +24,8 @@ public class Scores extends java.util.Observable implements Serializable{
 	private static final long serialVersionUID = 4258750736263856738L;
 	
 	private List<Player> scores;
+	
+	private static final int MAX_SCORES = 10;
 
 
 	
@@ -33,43 +35,57 @@ public class Scores extends java.util.Observable implements Serializable{
 		this.scores = new ArrayList<Player>();
 	}
 	/**
-	 *
+	 *@param player
+	 * 
+	 * Method adds a new score to the list if
+	 * it is amongst the top 10 scores.
+	 *  
 	 */
 	public void addScore(Player player) {
-		
-	//Adiciona novo jogador à lista da Scores e ordena.	
 	
 		this.scores.add(player);
-		this.sort(); 
+		this.sort();
+		
+		if(this.scores.size() > MAX_SCORES)
+		{
+			this.scores.remove(MAX_SCORES);   //Removes the 11th score, keeps it at 10.
+		}
+
 	}
 	
+	/**
+	 * 
+	 */
 	public List<Player> getScores() {
 		return scores;
 	}
 	/**
+	 * Cleans scores list
 	 * 
 	 */
 	public void deleteAllScores() {
 
-	//Limpa a lista de scores.
 		
 		this.scores.clear();
 	}
 
 	/**
 	 * @param index
+	 * 
+	 * Deletes score from index
+	 *
 	 */
 	public void deleteScore(int index) {
-	
-	//Deleta um Score, e reorganiza todos os restantes subtraindo 1 de seus índices.
 		
 		this.scores.remove(index);
 	}
 
-	
+	/**
+	 * 	Sorts score list based on each player's score
+	 * 
+	 */
 	private void sort(){
 		
-	//Ordena a lista da scores baseado no score de cada jogador incluso.
 		
 		Collections.sort(scores, Collections.reverseOrder(new Comparator<Player>() {
 	        @Override
