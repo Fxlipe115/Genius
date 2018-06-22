@@ -17,6 +17,9 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.TableModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings("serial")
 public class ScoresDialog extends JPanel {
@@ -25,7 +28,6 @@ public class ScoresDialog extends JPanel {
 	private JButton btnBack;
 
 	public ScoresDialog() {
-		setLayout(null);
 
 		table = new JTable();
 		table.setFillsViewportHeight(true);
@@ -34,16 +36,35 @@ public class ScoresDialog extends JPanel {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(0, 0, 450, 277);
-		add(scrollPane);
 
 		btnClearScores = new JButton("Clean scores");
-		btnClearScores.setBounds(0, 277, 93, 23);
-		add(btnClearScores);
 
 		btnBack = new JButton("Back");
-		btnBack.setBounds(361, 277, 89, 23);
-		add(btnBack);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnClearScores)
+							.addPreferredGap(ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
+							.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnClearScores)
+						.addComponent(btnBack))
+					.addContainerGap())
+		);
+		setLayout(groupLayout);
 	}
 
 	public void addClearScoresButtonListener(ActionListener l) {
