@@ -56,24 +56,32 @@ public class ApplicationController implements ActionListener {
 		menuPanel.addOptionsButtonListener(this);
 		menuPanel.addExitButtonListener(this);
 		mainWindow.setContentPane(menuPanel);
+		mainWindow.revalidate();
+		mainWindow.repaint();
 	}
 
 	private void initGame() {
 		GameController gameController = new GameController();
 		gameController.getGameView().addController(this);
 		mainWindow.setContentPane(gameController.getGameView());
+		mainWindow.revalidate();
+		mainWindow.repaint();
 	}
 
 	private void openSettings() {
 		SettingsController settingsController = new SettingsController();
 		settingsController.getSettingsView().addBackButtonController(this);
 		mainWindow.setContentPane(settingsController.getSettingsView());
+		mainWindow.revalidate();
+		mainWindow.repaint();
 	}
 
 	private void openScores() {
 		ScoresController scoresController = new ScoresController();
 		scoresController.getScoresView().addBackButtonListener(this);
 		mainWindow.setContentPane(scoresController.getScoresView());
+		mainWindow.revalidate();
+		mainWindow.repaint();
 	}
 
 	private void close() {
