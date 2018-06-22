@@ -42,9 +42,8 @@ public class ScoresController implements ActionListener {
 	public ScoresController(){
 		scoresView = new ScoresDialog();
 		scoresModel = new ScoresTableModel();
-		scoresView.addController(this);
-		scoresView.getTable().setModel(scoresModel);
-		scoresModel.addTableModelListener(scoresView.getTable());
+		scoresView.addClearScoresButtonListener(this);
+		scoresView.setScoresTableModel(scoresModel);
 		loadScores();
 	}
 
