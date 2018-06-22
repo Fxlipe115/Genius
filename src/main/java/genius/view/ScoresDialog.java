@@ -44,8 +44,6 @@ public class ScoresDialog extends JPanel {
 		btnBack = new JButton("Back");
 		btnBack.setBounds(361, 277, 89, 23);
 		add(btnBack);
-
-		this.getRootPane().setDefaultButton(btnBack);
 	}
 
 	public void addClearScoresButtonListener(ActionListener l) {
