@@ -26,7 +26,7 @@ import genius.view.GameDialog;
  * @author Graeff
  *
  */
-public class GameController implements java.awt.event.ActionListener {
+public abstract class GameController implements java.awt.event.ActionListener {
 	private Game gameModel;
 	private GameDialog gameView;
 	
