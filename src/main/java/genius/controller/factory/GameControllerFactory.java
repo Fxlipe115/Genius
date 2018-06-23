@@ -11,7 +11,7 @@ public class GameControllerFactory {
 		case Default:
 			return new DefaultGameController();
 		default:
-			throw new IllegalArgumentException("Could not create game controller for " + mode.toString() + " mode");
+			throw new IllegalArgumentException("Could not create game controller for " + mode == null ? "null" : mode.toString() + " mode");
 		}
 	}
 	
