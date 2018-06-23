@@ -104,4 +104,12 @@ public class GamePanel extends JLayeredPane implements java.util.Observer {
 		scoreLabel.setText("You lose");
 		gui.setEnabled(false);
 	}
+	
+	public void showWaitMessage() {
+		scoreLabel.setText("Wait...");
+	}
+	
+	public void showPlayerTurnMessage() {
+		scoreLabel.setText("Your turn");
+	}
 }

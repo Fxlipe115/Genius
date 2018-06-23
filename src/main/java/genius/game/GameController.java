@@ -78,11 +78,6 @@ public abstract class GameController implements java.awt.event.ActionListener {
 	}
 
 
-	public void pause() {
-		// TODO implement me
-	}
-
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
@@ -96,6 +91,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 			break;
 
 		case "Begin":
+		case "Restart":
 			gameView.getBeginButton().setText("Repeat");
 			gameView.getGui().setEnabled(true);
 			begin();
@@ -103,10 +99,6 @@ public abstract class GameController implements java.awt.event.ActionListener {
 
 		case "Repeat":
 			playSequence();
-			break;
-
-		case "Exit":
-			// exit
 			break;
 		}
 	}
@@ -139,10 +131,12 @@ public abstract class GameController implements java.awt.event.ActionListener {
 			t = new Timer(1000, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					gameView.showWaitMessage();
 					if(!isFinished()) {
 						animator.playNext();
 					} else {
 						t.setRepeats(false);
+						gameView.showPlayerTurnMessage();
 					}
 				}
 			});
