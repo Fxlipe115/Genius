@@ -10,23 +10,21 @@ package genius;
 
 import javax.swing.JFrame;
 
-import genius.settings.Settings;
-
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {	
 	/**
 	 * Create the application.
 	 */
-	public MainWindow() {
-		initialize();
+	public MainWindow(int width, int heigth) {
+		initialize(width, heigth);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		int contentWidth = Settings.INSTANCE.getSize().getValue().width;
-		int contentHeight = Settings.INSTANCE.getSize().getValue().height;
+	private void initialize(int width, int height) {
+		int contentWidth = width;
+		int contentHeight = height;
 		int widthCorrection = 6;
 		int heightCorrection = 30;
 		int frameWidth = contentWidth + widthCorrection;

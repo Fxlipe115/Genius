@@ -25,9 +25,13 @@ import genius.MenuPanel;
  */
 public class ApplicationController implements ActionListener {
 	private MainWindow mainWindow;
+	private Settings settings;
 
 	public void initApplication() {
-		mainWindow = new MainWindow();
+		settings = Settings.INSTANCE;
+		int width = settings.getSize().getValue().width;
+		int height = settings.getSize().getValue().height;
+		mainWindow = new MainWindow(width, height);
 		openMenu();
 	}
 
@@ -66,7 +70,12 @@ public class ApplicationController implements ActionListener {
 	}
 
 	private void initGame() {
-		GameController gameController = GameControllerFactory.create(Settings.INSTANCE.getMode());
+		int width = settings.getSize().getValue().width;
+		int height = settings.getSize().getValue().height;
+		int sequenceSize = settings.getDifficulty().getValue();
+		boolean hasSound = settings.hasSound();
+		GameController gameController = GameControllerFactory.create(settings.getMode());
+		gameController.initialize(width, height, sequenceSize, hasSound);
 		gameController.getGameView().addController(this);
 		mainWindow.setContentPane(gameController.getGameView());
 		mainWindow.revalidate();

@@ -15,19 +15,19 @@ import genius.types.Button;
  *
  */
 public class DefaultGameController extends GameController {
-	
+
 	@Override
 	public void handleButtonClick(Button pressedButton) {
 		gameView.getGui().setPressedButton(pressedButton);
 		playSound(pressedButton);
-		
-		if(gameModel.getSequence().get(sequenceIndex) == pressedButton) {
-			if(sequenceIndex < score.getScore()) {
+
+		if (gameModel.getSequence().get(sequenceIndex) == pressedButton) {
+			if (sequenceIndex < score.getScore()) {
 				sequenceIndex++;
 			} else { // hit a full sequence
-				score.incrementScore();;
+				score.incrementScore();
 				sequenceIndex = 0;
-				if(score.getScore() == difficulty) {
+				if (score.getScore() == sequenceSize) {
 					gameView.showWinMessage();
 				} else {
 					playSequence();
@@ -40,4 +40,3 @@ public class DefaultGameController extends GameController {
 	}
 
 }
-
