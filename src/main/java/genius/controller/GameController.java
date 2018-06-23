@@ -27,26 +27,26 @@ import genius.view.GameDialog;
  *
  */
 public abstract class GameController implements java.awt.event.ActionListener {
-	private Game gameModel;
-	private GameDialog gameView;
+	protected Game gameModel;
+	protected GameDialog gameView;
 	
-	private Player score;
-	private int sequenceIndex;
-	private SequenceAnimator animator;
-	private SoundPlayer soundPlayer;
-	private int difficulty;
+	protected Player score;
+	protected int sequenceIndex;
+	protected int difficulty;
+	
 	private boolean hasSound;
 	private int width;
 	private int height;
 	
-
+	private SequenceAnimator animator;
+	private SoundPlayer soundPlayer;
 	
-	public GameController(){
+	public GameController() {
 		width = Settings.INSTANCE.getSize().getValue().width;
 		height = Settings.INSTANCE.getSize().getValue().height;
-		difficulty = Settings.INSTANCE.getDifficulty().getValue(); 
+		difficulty = Settings.INSTANCE.getDifficulty().getValue();
 		hasSound = Settings.INSTANCE.hasSound();
-		
+
 		gameModel = new Game();
 		gameView = new GameDialog(width, height);
 		gameModel.addObserver(gameView);
@@ -55,7 +55,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 		animator = null;
 		score = null;
 		soundPlayer = null;
-}
+	}
 
 	public GameDialog getGameView() {
 		return gameView;
@@ -114,7 +114,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 
 	public abstract void handleButtonClick(ActionEvent e);
 
-	private void playSound(Button pressedButtonColor) {
+	protected void playSound(Button pressedButtonColor) {
 		if(soundPlayer == null) {
 			soundPlayer = new SoundPlayer();
 		}
