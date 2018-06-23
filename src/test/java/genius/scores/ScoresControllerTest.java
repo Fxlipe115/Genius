@@ -1,4 +1,4 @@
-package genius.controller;
+package genius.scores;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -7,7 +7,8 @@ import java.util.List;
 
 import org.junit.Test;
 
-import genius.model.Player;
+import genius.player.Player;
+import genius.scores.ScoresController;
 
 public class ScoresControllerTest {
 	@Test

@@ -6,7 +6,7 @@
  * Created : May 13, 2018
  * Author  : Matheus
  */
-package genius.model;
+package genius.player;
 
 import java.io.Serializable;
 

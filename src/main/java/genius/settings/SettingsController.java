@@ -6,17 +6,11 @@
  * Created : May 13, 2018
  * Author  : 
  */
-package genius.controller;
+package genius.settings;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
-
-import genius.model.Difficulty;
-import genius.model.Mode;
-import genius.model.ScreenSize;
-import genius.model.Settings;
-import genius.view.SettingsDialog;
 
 
 /**

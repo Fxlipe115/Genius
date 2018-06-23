@@ -1,4 +1,4 @@
-package genius.model;
+package genius.scores;
 
 import javax.swing.table.AbstractTableModel;
 

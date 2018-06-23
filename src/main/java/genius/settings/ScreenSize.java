@@ -1,4 +1,4 @@
-package genius.model;
+package genius.settings;
 
 import java.awt.Dimension;
 

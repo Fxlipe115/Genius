@@ -6,7 +6,7 @@
  * Created : May 13, 2018
  * Author  : Graeff
  */
-package genius.controller;
+package genius.game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -15,11 +15,9 @@ import javax.swing.Timer;
 
 import org.jfugue.theory.Note;
 
-import genius.model.Button;
-import genius.model.Game;
-import genius.model.Player;
-import genius.model.Settings;
-import genius.view.GameDialog;
+import genius.button.Button;
+import genius.player.Player;
+import genius.settings.Settings;
 
 
 /**

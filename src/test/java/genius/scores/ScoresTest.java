@@ -1,5 +1,5 @@
 
-package genius.model;
+package genius.scores;
 
 import org.junit.Test;
 
@@ -7,7 +7,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Assert.*;
 
-public class TestScores {
+import genius.player.Player;
+import genius.scores.Scores;
+
+public class ScoresTest {
 	
 	
 	@Test

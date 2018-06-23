@@ -6,7 +6,7 @@
  * Created : May 13, 2018
  * Author  : Graeff
  */
-package genius.view;
+package genius.game;
 
 import java.awt.event.ActionListener;
 import java.util.Observable;

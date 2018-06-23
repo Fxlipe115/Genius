@@ -1,8 +1,7 @@
-package genius.view;
+package genius.button;
 
 import java.awt.Canvas;
 import java.awt.Color;
-import genius.model.Button;
 
 @SuppressWarnings("serial")
 public class ButtonView extends Canvas{

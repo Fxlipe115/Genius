@@ -6,7 +6,7 @@
  * Created : May 13, 2018
  * Author  : Graeff
  */
-package genius.view;
+package genius.scores;
 
 import java.awt.event.ActionListener;
 

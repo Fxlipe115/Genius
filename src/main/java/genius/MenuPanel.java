@@ -1,4 +1,4 @@
-package genius.view;
+package genius;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;

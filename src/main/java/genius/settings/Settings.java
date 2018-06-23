@@ -6,7 +6,7 @@
  * Created : May 13, 2018
  * Author  : Graeff
  */
-package genius.model;
+package genius.settings;
 
 import java.awt.Dimension;
 import java.io.File;

@@ -6,10 +6,13 @@
  * Created : May 13, 2018
  * Author  : 
  */
-package genius.model;
+package genius.game;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import genius.button.Button;
+import genius.player.Player;
 
 
 /**

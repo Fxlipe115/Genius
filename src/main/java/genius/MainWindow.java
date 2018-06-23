@@ -6,12 +6,12 @@
  * Created : May 13, 2018
  * Author  : 
  */
-package genius.view;
+package genius;
 
 import javax.swing.JFrame;
 
-import genius.controller.GameController;
-import genius.model.Settings;
+import genius.game.GameController;
+import genius.settings.Settings;
 
 public class MainWindow extends JFrame {	
 	/**

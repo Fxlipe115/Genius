@@ -6,7 +6,7 @@
  * Created : May 13, 2018
  * Author  : 
  */
-package genius.view;
+package genius.game;
 
 import javax.swing.JDialog;
 

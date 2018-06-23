@@ -6,8 +6,11 @@
  * Created : May 13, 2018
  * Author  : Henrique Barboza
  */
-package genius.model;
+package genius.scores;
 import java.util.List;
+
+import genius.player.Player;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;

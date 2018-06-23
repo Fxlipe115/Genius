@@ -6,7 +6,7 @@
  * Created : 14 de mai de 2018
  * Author  : Graeff
  */
-package genius.model;
+package genius.settings;
 
 import static org.junit.Assert.*;
 
@@ -14,9 +14,14 @@ import java.awt.Dimension;
 
 import org.junit.Test;
 
+import genius.settings.Difficulty;
+import genius.settings.Mode;
+import genius.settings.ScreenSize;
+import genius.settings.Settings;
 
 
-public class TestSettings {
+
+public class SettingsTest {
 	@Test
 	public void instatiatingCorrectValues(){
 		assertEquals(Mode.Default, Settings.INSTANCE.getMode());

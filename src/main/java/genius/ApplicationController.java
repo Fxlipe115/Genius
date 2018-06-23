@@ -6,13 +6,14 @@
  * Created : May 11, 2018
  * Author  : Graeff 
  */
-package genius.controller;
+package genius;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import genius.view.MainWindow;
-import genius.view.MenuPanel;
+import genius.game.GameController;
+import genius.scores.ScoresController;
+import genius.settings.SettingsController;
 
 /**
  * @author Graeff

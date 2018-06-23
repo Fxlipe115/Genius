@@ -6,7 +6,7 @@
  * Created : May 13, 2018
  * Author  : 
  */
-package genius.view;
+package genius.settings;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -15,10 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
-
-import genius.model.Difficulty;
-import genius.model.Mode;
-import genius.model.ScreenSize;
 
 import java.awt.Cursor;
 import java.awt.event.ActionListener;

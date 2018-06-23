@@ -6,9 +6,7 @@
  * Created : May 13, 2018
  * Author  : 
  */
-package genius.controller;
-import genius.view.ScoresDialog;
-
+package genius.scores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
@@ -25,9 +23,7 @@ import java.io.OutputStream;
 
 import javax.swing.JOptionPane;
 
-import genius.model.Player;
-import genius.model.Scores;
-import genius.model.ScoresTableModel;
+import genius.player.Player;
 
 
 /**

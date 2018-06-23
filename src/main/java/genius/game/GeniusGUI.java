@@ -1,4 +1,4 @@
-package genius.view;
+package genius.game;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -9,11 +9,12 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Arc2D;
 
 import javax.swing.Timer;
+
+import genius.button.Button;
+
 import javax.swing.AbstractButton;
 import javax.swing.ButtonModel;
 import javax.swing.DefaultButtonModel;
-
-import genius.model.Button;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
