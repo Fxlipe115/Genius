@@ -86,27 +86,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "click") {
-			Button pressedButtonColor = Button.values()[e.getModifiers()];
-			
-			gameView.getGui().setPressedButton(pressedButtonColor);
-			playSound(pressedButtonColor);
-			
-			if(gameModel.getSequence().get(sequenceIndex) == pressedButtonColor) {
-				if(sequenceIndex < score.getScore()) {
-					sequenceIndex++;
-				} else { // hit a full sequence
-					score.incrementScore();;
-					sequenceIndex = 0;
-					if(score.getScore() == difficulty) {
-						gameView.showWinMessage();
-					} else {
-						playSequence();
-						gameView.setScore(score.getScore());
-					}
-				}
-			} else {
-				gameView.showLoseMessage();
-			}
+			handleButtonClick(e);
 		}
 		
 		
@@ -130,6 +110,8 @@ public abstract class GameController implements java.awt.event.ActionListener {
 			// exit
 		}
 	}
+
+	public abstract void handleButtonClick(ActionEvent e);
 
 	private void playSound(Button pressedButtonColor) {
 		if(soundPlayer == null) {
