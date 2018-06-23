@@ -31,6 +31,8 @@ public class SettingsController implements ActionListener {
 		settingsModel = Settings.INSTANCE;
 		settingsView = new SettingsPanel();
 		settingsView.addSettingsController(this);
+		settingsView.addApplyButtonController(this);
+		settingsView.addRevertButtonController(this);
 		
 		settingsView.setScreenSizeComboBoxIndex(settingsModel.getSize().ordinal());
 		settingsView.setGameModeComboBoxIndex(settingsModel.getMode().ordinal());
