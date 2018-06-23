@@ -83,6 +83,16 @@ public class SettingsPanel extends JPanel implements Observer {
 		springLayout.putConstraint(SpringLayout.SOUTH, backButton, -10, SpringLayout.SOUTH, this);
 		springLayout.putConstraint(SpringLayout.EAST, backButton, -10, SpringLayout.EAST, this);
 		add(backButton);
+		
+		JButton btnApply = new JButton("Apply Changes");
+		springLayout.putConstraint(SpringLayout.NORTH, btnApply, 0, SpringLayout.NORTH, backButton);
+		springLayout.putConstraint(SpringLayout.EAST, btnApply, -6, SpringLayout.WEST, backButton);
+		add(btnApply);
+		
+		JButton btnRevert = new JButton("Revert");
+		springLayout.putConstraint(SpringLayout.WEST, btnRevert, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, btnRevert, 0, SpringLayout.SOUTH, backButton);
+		add(btnRevert);
 	}
 
 	public void addSettingsController(ActionListener controller){
