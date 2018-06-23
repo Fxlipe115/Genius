@@ -7,7 +7,8 @@
  * Author  : Matheus
  */
 package genius.game;
-import genius.button.Button;
+
+import genius.types.Button;
 
 /**
  * @author Matheus

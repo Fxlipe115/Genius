@@ -19,8 +19,8 @@ import java.awt.Color;
 import java.awt.Font;
 
 @SuppressWarnings("serial")
-public class GameDialog extends JLayeredPane implements java.util.Observer {
-	private GeniusGUI gui;
+public class GamePanel extends JLayeredPane implements java.util.Observer {
+	private GeniusButtons gui;
 	private JButton beginButton;
 	private JButton exitButton;
 	private JLabel scoreLabel;
@@ -28,7 +28,7 @@ public class GameDialog extends JLayeredPane implements java.util.Observer {
 	/**
 	 * Create the dialog.
 	 */
-	public GameDialog(int width, int height) {
+	public GamePanel(int width, int height) {
 		int buttonsWidth = 75;
 		int buttonsHeight = 30;
 		int scoreLabelWidth = 2 * buttonsWidth;
@@ -39,7 +39,7 @@ public class GameDialog extends JLayeredPane implements java.util.Observer {
 		this.setOpaque(true);
 		this.setBackground(Color.GRAY);
 		
-		gui = new GeniusGUI(height, height);
+		gui = new GeniusButtons(height, height);
 		gui.setBounds((width - height)/2, 0, height, height);
 		gui.setEnabled(false);
 		this.add(gui, DEFAULT_LAYER);
@@ -84,7 +84,7 @@ public class GameDialog extends JLayeredPane implements java.util.Observer {
 	}
 
 	
-	public GeniusGUI getGui() {
+	public GeniusButtons getGui() {
 		return gui;
 	}
 

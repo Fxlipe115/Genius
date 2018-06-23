@@ -32,11 +32,11 @@ import genius.player.Player;
  */
 public class ScoresController implements ActionListener {
 	private ScoresTableModel scoresModel;
-	private ScoresDialog scoresView;
+	private ScoresPanel scoresView;
 
 	
 	public ScoresController(){
-		scoresView = new ScoresDialog();
+		scoresView = new ScoresPanel();
 		scoresModel = new ScoresTableModel();
 		scoresView.addClearScoresButtonListener(this);
 		scoresView.setScoresTableModel(scoresModel);
@@ -44,7 +44,7 @@ public class ScoresController implements ActionListener {
 	}
 
 
-	public ScoresDialog getScoresView() {
+	public ScoresPanel getScoresView() {
 		return scoresView;
 	}
 

@@ -14,6 +14,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
+import genius.types.Difficulty;
+import genius.types.Mode;
+import genius.types.ScreenSize;
+
 
 /**
  * @author Graeff

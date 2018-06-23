@@ -1,6 +1,6 @@
 package genius.game;
 
-import genius.settings.Mode;
+import genius.types.Mode;
 
 public class GameControllerFactory {
 

@@ -10,6 +10,11 @@ package genius.settings;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
+
+import genius.types.Difficulty;
+import genius.types.Mode;
+import genius.types.ScreenSize;
+
 import javax.swing.JCheckBox;
 
 
@@ -20,11 +25,11 @@ import javax.swing.JCheckBox;
 public class SettingsController implements ActionListener {
 	
 	private Settings settingsModel;
-	private SettingsDialog settingsView;
+	private SettingsPanel settingsView;
 
 	public SettingsController(){
 		settingsModel = Settings.INSTANCE;
-		settingsView = new SettingsDialog();
+		settingsView = new SettingsPanel();
 		settingsView.addSettingsController(this);
 		
 		settingsView.setScreenSizeComboBoxIndex(settingsModel.getSize().ordinal());
@@ -38,7 +43,7 @@ public class SettingsController implements ActionListener {
 		settingsView.addBackButtonController(parent);
 	}
 
-	public SettingsDialog getSettingsView() {
+	public SettingsPanel getSettingsView() {
 		return settingsView;
 	}
 

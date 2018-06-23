@@ -2,7 +2,8 @@ package genius.game;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import genius.settings.Mode;
+
+import genius.types.Mode;
 
 public class GameControllerFactoryTest {
 

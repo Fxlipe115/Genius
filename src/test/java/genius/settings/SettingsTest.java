@@ -12,10 +12,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import genius.settings.Difficulty;
-import genius.settings.Mode;
-import genius.settings.ScreenSize;
 import genius.settings.Settings;
+import genius.types.Difficulty;
+import genius.types.Mode;
+import genius.types.ScreenSize;
 
 
 

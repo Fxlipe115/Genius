@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import genius.button.Button;
 import genius.player.Player;
+import genius.types.Button;
 
 
 /**

@@ -1,7 +1,7 @@
 /*
- * Final project for the course Técnicas de Construção de Programas
+ * Final project for the course Tï¿½cnicas de Construï¿½ï¿½o de Programas
  * Universidade Federal do Rio Grande do Sul
- * Instituto de Informática
+ * Instituto de Informï¿½tica
  *
  * Created : 14 de mai de 2018
  * Author  : Graeff
@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import genius.button.Button;
+import genius.types.Button;
 
 
 /**

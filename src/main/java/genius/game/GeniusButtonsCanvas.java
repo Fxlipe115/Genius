@@ -1,21 +1,23 @@
-package genius.button;
+package genius.game;
 
 import java.awt.Canvas;
 import java.awt.Color;
 
+import genius.types.Button;
+
 @SuppressWarnings("serial")
-public class ButtonView extends Canvas{
+public class GeniusButtonsCanvas extends Canvas{
 	private Button value;
 	private boolean turnedOn;
 	private Color color;
 	
-	public ButtonView(Button value, Color color) {
+	public GeniusButtonsCanvas(Button value, Color color) {
 		this.value = value;
 		this.color = color;
 		this.setTurnedOn(false);
 	}
 	
-	public ButtonView(Color buttonColor) {
+	public GeniusButtonsCanvas(Color buttonColor) {
 		this.setBackground(buttonColor);
 	}
 

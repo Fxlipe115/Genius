@@ -6,7 +6,7 @@
  * Created : May 13, 2018
  * Author  : 
  */
-package genius.button;
+package genius.types;
 
 
 /**

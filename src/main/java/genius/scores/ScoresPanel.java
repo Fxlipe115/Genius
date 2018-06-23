@@ -22,12 +22,12 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 @SuppressWarnings("serial")
-public class ScoresDialog extends JPanel {
+public class ScoresPanel extends JPanel {
 	private JTable table;
 	private JButton btnClearScores;
 	private JButton btnBack;
 
-	public ScoresDialog() {
+	public ScoresPanel() {
 
 		table = new JTable();
 		table.setFillsViewportHeight(true);

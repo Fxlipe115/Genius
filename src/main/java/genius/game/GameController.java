@@ -15,9 +15,9 @@ import javax.swing.Timer;
 
 import org.jfugue.theory.Note;
 
-import genius.button.Button;
 import genius.player.Player;
 import genius.settings.Settings;
+import genius.types.Button;
 
 
 
@@ -28,7 +28,7 @@ import genius.settings.Settings;
  */
 public abstract class GameController implements java.awt.event.ActionListener {
 	protected Game gameModel;
-	protected GameDialog gameView;
+	protected GamePanel gameView;
 	
 	protected Player score;
 	protected int sequenceIndex;
@@ -48,7 +48,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 		hasSound = Settings.INSTANCE.hasSound();
 
 		gameModel = new Game();
-		gameView = new GameDialog(width, height);
+		gameView = new GamePanel(width, height);
 		gameModel.addObserver(gameView);
 		gameView.addController(this);
 		gameView.setVisible(true);
@@ -57,7 +57,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 		soundPlayer = null;
 	}
 
-	public GameDialog getGameView() {
+	public GamePanel getGameView() {
 		return gameView;
 	}
 

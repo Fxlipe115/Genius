@@ -10,7 +10,7 @@ import java.awt.geom.Arc2D;
 
 import javax.swing.Timer;
 
-import genius.button.Button;
+import genius.types.Button;
 
 import javax.swing.AbstractButton;
 import javax.swing.ButtonModel;
@@ -21,7 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
 @SuppressWarnings("serial")
-public class GeniusGUI extends AbstractButton {
+public class GeniusButtons extends AbstractButton {
 	private Button pressedButton;
 	private int width;
 	private int height;
@@ -33,7 +33,7 @@ public class GeniusGUI extends AbstractButton {
 	private static final Color YELLOW_BUTTON_COLOR = Color.YELLOW;
 	private static final Color BLUE_BUTTON_COLOR = Color.BLUE;
 
-	public GeniusGUI(int width, int height) {
+	public GeniusButtons(int width, int height) {
 		model = new DefaultButtonModel();
 		setModel(model);
 		this.pressedButton = null;

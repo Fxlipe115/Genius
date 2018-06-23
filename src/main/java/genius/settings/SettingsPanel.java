@@ -16,6 +16,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 
+import genius.types.Difficulty;
+import genius.types.Mode;
+import genius.types.ScreenSize;
+
 import java.awt.Cursor;
 import java.awt.event.ActionListener;
 
@@ -23,7 +27,7 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 
 @SuppressWarnings("serial")
-public class SettingsDialog extends JPanel implements Observer {
+public class SettingsPanel extends JPanel implements Observer {
 
 	private JComboBox screenSizeComboBox = new JComboBox(ScreenSize.values());
 	private JComboBox gameModeComboBox = new JComboBox(Mode.values());
@@ -31,7 +35,7 @@ public class SettingsDialog extends JPanel implements Observer {
 	private JCheckBox muteCheckBox = new JCheckBox("");
 	private JButton backButton = new JButton("Back");
 
-	public SettingsDialog() {
+	public SettingsPanel() {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
