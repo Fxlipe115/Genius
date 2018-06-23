@@ -26,27 +26,27 @@ import genius.view.GameDialog;
  * @author Graeff
  *
  */
-public class GameController implements java.awt.event.ActionListener {
-	private Game gameModel;
-	private GameDialog gameView;
+public abstract class GameController implements java.awt.event.ActionListener {
+	protected Game gameModel;
+	protected GameDialog gameView;
 	
-	private Player score;
-	private int sequenceIndex;
-	private SequenceAnimator animator;
-	private SoundPlayer soundPlayer;
-	private int difficulty;
+	protected Player score;
+	protected int sequenceIndex;
+	protected int difficulty;
+	
 	private boolean hasSound;
 	private int width;
 	private int height;
 	
-
+	private SequenceAnimator animator;
+	private SoundPlayer soundPlayer;
 	
-	public GameController(){
+	public GameController() {
 		width = Settings.INSTANCE.getSize().getValue().width;
 		height = Settings.INSTANCE.getSize().getValue().height;
-		difficulty = Settings.INSTANCE.getDifficulty().getValue(); 
+		difficulty = Settings.INSTANCE.getDifficulty().getValue();
 		hasSound = Settings.INSTANCE.hasSound();
-		
+
 		gameModel = new Game();
 		gameView = new GameDialog(width, height);
 		gameModel.addObserver(gameView);
@@ -55,7 +55,7 @@ public class GameController implements java.awt.event.ActionListener {
 		animator = null;
 		score = null;
 		soundPlayer = null;
-}
+	}
 
 	public GameDialog getGameView() {
 		return gameView;
@@ -85,53 +85,37 @@ public class GameController implements java.awt.event.ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand() == "click") {
-			Button pressedButtonColor = Button.values()[e.getModifiers()];
-			
-			gameView.getGui().setPressedButton(pressedButtonColor);
-			playSound(pressedButtonColor);
-			
-			if(gameModel.getSequence().get(sequenceIndex) == pressedButtonColor) {
-				if(sequenceIndex < score.getScore()) {
-					sequenceIndex++;
-				} else { // hit a full sequence
-					score.incrementScore();;
-					sequenceIndex = 0;
-					if(score.getScore() == difficulty) {
-						gameView.showWinMessage();
-					} else {
-						playSequence();
-						gameView.setScore(score.getScore());
-					}
-				}
-			} else {
-				gameView.showLoseMessage();
-			}
-		}
+		switch (e.getActionCommand()) {
+		case "click":
+			Button pressedButton = Button.values()[e.getModifiers()];
+			handleButtonClick(pressedButton);
+			break;
 		
-		
-		if(e.getActionCommand() == "wait") {
+		case "wait":
 			gameView.getGui().setPressedButton(null);
 			gameView.getGui().setEnabled(true);
 			gameView.getBeginButton().setEnabled(true);
-		}
-		
-		if(e.getActionCommand() == "Begin") {
+			break;
+
+		case "Begin":
 			gameView.getBeginButton().setText("Repeat");
 			gameView.getGui().setEnabled(true);
 			begin();
-		}
-		
-		if(e.getActionCommand() == "Repeat") {
+			break;
+
+		case "Repeat":
 			playSequence();
-		}
-		
-		if(e.getActionCommand() == "Exit") {
+			break;
+
+		case "Exit":
 			// exit
+			break;
 		}
 	}
 
-	private void playSound(Button pressedButtonColor) {
+	public abstract void handleButtonClick(Button pressedButton);
+
+	protected void playSound(Button pressedButtonColor) {
 		if(soundPlayer == null) {
 			soundPlayer = new SoundPlayer();
 		}
