@@ -110,6 +110,10 @@ public class SettingsPanel extends JPanel implements Observer {
 		applyButton.addActionListener(controller);
 	}
 	
+	public void addRevertButtonController(ActionListener controller) {
+		revertButton.addActionListener(controller);
+	}
+	
 	public void setScreenSizeComboBoxIndex(int index) {
 		screenSizeComboBox.setSelectedIndex(index);
 	}
