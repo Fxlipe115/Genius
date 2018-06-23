@@ -28,7 +28,7 @@ public class ApplicationController implements ActionListener {
 	private Settings settings;
 
 	public void initApplication() {
-		settings = settings.INSTANCE;
+		settings = Settings.INSTANCE;
 		int width = settings.getSize().getValue().width;
 		int height = settings.getSize().getValue().height;
 		mainWindow = new MainWindow(width, height);
