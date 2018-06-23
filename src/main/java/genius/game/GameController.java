@@ -49,7 +49,6 @@ public abstract class GameController implements java.awt.event.ActionListener {
 
 		gameModel = new Game();
 		gameView = new GamePanel(width, height);
-		gameModel.addObserver(gameView);
 		gameView.addController(this);
 		gameView.setVisible(true);
 		animator = null;
