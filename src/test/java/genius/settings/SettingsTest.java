@@ -10,8 +10,6 @@ package genius.settings;
 
 import static org.junit.Assert.*;
 
-import java.awt.Dimension;
-
 import org.junit.Test;
 
 import genius.settings.Difficulty;
