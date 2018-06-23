@@ -12,8 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import genius.game.GameController;
+import genius.game.GameControllerFactory;
 import genius.scores.ScoresController;
+import genius.settings.Settings;
 import genius.settings.SettingsController;
+import genius.MainWindow;
+import genius.MenuPanel;
 
 /**
  * @author Graeff
@@ -62,7 +66,7 @@ public class ApplicationController implements ActionListener {
 	}
 
 	private void initGame() {
-		GameController gameController = new GameController();
+		GameController gameController = GameControllerFactory.create(Settings.INSTANCE.getMode());
 		gameController.getGameView().addController(this);
 		mainWindow.setContentPane(gameController.getGameView());
 		mainWindow.revalidate();
