@@ -85,29 +85,30 @@ public abstract class GameController implements java.awt.event.ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand() == "click") {
+		switch (e.getActionCommand()) {
+		case "click":
 			handleButtonClick(e);
-		}
+			break;
 		
-		
-		if(e.getActionCommand() == "wait") {
+		case "wait":
 			gameView.getGui().setPressedButton(null);
 			gameView.getGui().setEnabled(true);
 			gameView.getBeginButton().setEnabled(true);
-		}
-		
-		if(e.getActionCommand() == "Begin") {
+			break;
+
+		case "Begin":
 			gameView.getBeginButton().setText("Repeat");
 			gameView.getGui().setEnabled(true);
 			begin();
-		}
-		
-		if(e.getActionCommand() == "Repeat") {
+			break;
+
+		case "Repeat":
 			playSequence();
-		}
-		
-		if(e.getActionCommand() == "Exit") {
+			break;
+
+		case "Exit":
 			// exit
+			break;
 		}
 	}
 
