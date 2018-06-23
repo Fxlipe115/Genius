@@ -34,10 +34,7 @@ public class SettingsController implements ActionListener {
 		settingsView.addApplyButtonController(this);
 		settingsView.addRevertButtonController(this);
 		
-		settingsView.setScreenSizeComboBoxIndex(settingsModel.getSize().ordinal());
-		settingsView.setGameModeComboBoxIndex(settingsModel.getMode().ordinal());
-		settingsView.setDifficultyComboBoxIndex(settingsModel.getDifficulty().ordinal());
-		settingsView.setMuteCheckBoxState(!settingsModel.hasSound());
+		refreshGraphicComponents();
 	}
 	
 	public SettingsController(ActionListener parent) {
@@ -70,6 +67,13 @@ public class SettingsController implements ActionListener {
 		if(e.getSource() == settingsView.getApplyButton()) {
 			settingsModel.persist("settings.properties");
 		}
+	}
+	
+	private void refreshGraphicComponents() {
+		settingsView.setScreenSizeComboBoxIndex(settingsModel.getSize().ordinal());
+		settingsView.setGameModeComboBoxIndex(settingsModel.getMode().ordinal());
+		settingsView.setDifficultyComboBoxIndex(settingsModel.getDifficulty().ordinal());
+		settingsView.setMuteCheckBoxState(!settingsModel.hasSound());
 	}
 
 }
