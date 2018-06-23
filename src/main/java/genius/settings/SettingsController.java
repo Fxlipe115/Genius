@@ -67,6 +67,11 @@ public class SettingsController implements ActionListener {
 		if(e.getSource() == settingsView.getApplyButton()) {
 			settingsModel.persist("settings.properties");
 		}
+		
+		if(e.getSource() == settingsView.getRevertButton()) {
+			settingsModel.load("settings.properties");
+			refreshGraphicComponents();
+		}
 	}
 	
 	private void refreshGraphicComponents() {
