@@ -87,7 +87,8 @@ public abstract class GameController implements java.awt.event.ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
 		case "click":
-			handleButtonClick(e);
+			Button pressedButton = Button.values()[e.getModifiers()];
+			handleButtonClick(pressedButton);
 			break;
 		
 		case "wait":
@@ -112,7 +113,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 		}
 	}
 
-	public abstract void handleButtonClick(ActionEvent e);
+	public abstract void handleButtonClick(Button pressedButton);
 
 	protected void playSound(Button pressedButtonColor) {
 		if(soundPlayer == null) {

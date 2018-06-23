@@ -18,13 +18,11 @@ import genius.model.Button;
 public class DefaultGameController extends GameController {
 	
 	@Override
-	public void handleButtonClick(ActionEvent e) {
-		Button pressedButtonColor = Button.values()[e.getModifiers()];
+	public void handleButtonClick(Button pressedButton) {
+		gameView.getGui().setPressedButton(pressedButton);
+		playSound(pressedButton);
 		
-		gameView.getGui().setPressedButton(pressedButtonColor);
-		playSound(pressedButtonColor);
-		
-		if(gameModel.getSequence().get(sequenceIndex) == pressedButtonColor) {
+		if(gameModel.getSequence().get(sequenceIndex) == pressedButton) {
 			if(sequenceIndex < score.getScore()) {
 				sequenceIndex++;
 			} else { // hit a full sequence
