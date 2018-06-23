@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 
 import genius.settings.Settings;
 
+@SuppressWarnings("serial")
 public class MainWindow extends JFrame {	
 	/**
 	 * Create the application.
@@ -24,7 +25,6 @@ public class MainWindow extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		System.out.println(Settings.INSTANCE.getSize());
 		int contentWidth = Settings.INSTANCE.getSize().getValue().width;
 		int contentHeight = Settings.INSTANCE.getSize().getValue().height;
 		int widthCorrection = 6;
