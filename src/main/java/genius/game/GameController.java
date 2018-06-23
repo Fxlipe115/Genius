@@ -131,11 +131,13 @@ public abstract class GameController implements java.awt.event.ActionListener {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					gameView.showWaitMessage();
+					gameView.getBeginButton().setEnabled(false);
 					if(!isFinished()) {
 						animator.playNext();
 					} else {
 						t.setRepeats(false);
 						gameView.showPlayerTurnMessage();
+						gameView.getBeginButton().setEnabled(true);
 					}
 				}
 			});
