@@ -66,6 +66,10 @@ public class SettingsController implements ActionListener {
 		if(e.getSource() == settingsView.getMuteCheckBox()) {
 			settingsModel.setSound(((JCheckBox) e.getSource()).isSelected());
 		}
+		
+		if(e.getSource() == settingsView.getApplyButton()) {
+			settingsModel.persist("settings.properties");
+		}
 	}
 
 }
