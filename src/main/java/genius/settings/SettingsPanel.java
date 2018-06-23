@@ -34,6 +34,7 @@ public class SettingsPanel extends JPanel implements Observer {
 	private JComboBox difficultyComboBox = new JComboBox(Difficulty.values());
 	private JCheckBox muteCheckBox = new JCheckBox("");
 	private JButton backButton = new JButton("Back");
+	private JButton applyButton = new JButton("Apply");
 
 	public SettingsPanel() {
 		SpringLayout springLayout = new SpringLayout();
@@ -84,10 +85,9 @@ public class SettingsPanel extends JPanel implements Observer {
 		springLayout.putConstraint(SpringLayout.EAST, backButton, -10, SpringLayout.EAST, this);
 		add(backButton);
 		
-		JButton btnApply = new JButton("Apply Changes");
-		springLayout.putConstraint(SpringLayout.NORTH, btnApply, 0, SpringLayout.NORTH, backButton);
-		springLayout.putConstraint(SpringLayout.EAST, btnApply, -6, SpringLayout.WEST, backButton);
-		add(btnApply);
+		springLayout.putConstraint(SpringLayout.NORTH, applyButton, 0, SpringLayout.NORTH, backButton);
+		springLayout.putConstraint(SpringLayout.EAST, applyButton, -6, SpringLayout.WEST, backButton);
+		add(applyButton);
 		
 		JButton btnRevert = new JButton("Revert");
 		springLayout.putConstraint(SpringLayout.WEST, btnRevert, 10, SpringLayout.WEST, this);
