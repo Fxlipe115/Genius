@@ -93,8 +93,6 @@ public abstract class GameController implements java.awt.event.ActionListener {
 		
 		case "wait":
 			gameView.getGui().setPressedButton(null);
-			gameView.getGui().setEnabled(true);
-			gameView.getBeginButton().setEnabled(true);
 			break;
 
 		case "Begin":
@@ -154,8 +152,6 @@ public abstract class GameController implements java.awt.event.ActionListener {
 
 		private void playNext() {
 			Button next = sequence.get(index);
-			gameView.getGui().setEnabled(false);
-			gameView.getBeginButton().setEnabled(false);
 			gameView.getGui().setPressedButton(next);
 			playSound(next);
 			index++;

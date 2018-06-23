@@ -91,6 +91,7 @@ public class GamePanel extends JLayeredPane implements java.util.Observer {
 
 	public void showWinMessage() {
 		scoreLabel.setText("You win");
+		gui.setEnabled(false);
 	}
 
 
@@ -101,5 +102,6 @@ public class GamePanel extends JLayeredPane implements java.util.Observer {
 
 	public void showLoseMessage() {
 		scoreLabel.setText("You lose");
+		gui.setEnabled(false);
 	}
 }
