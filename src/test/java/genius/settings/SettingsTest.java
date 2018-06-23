@@ -22,38 +22,41 @@ import genius.types.ScreenSize;
 public class SettingsTest {
 	@Test
 	public void instatiatingCorrectValues(){
-		assertEquals(Mode.Default, Settings.INSTANCE.getMode());
-		assertEquals(Difficulty.EASY, Settings.INSTANCE.getDifficulty());
-		assertEquals(true, Settings.INSTANCE.hasSound());
-		assertEquals(ScreenSize._640x480, Settings.INSTANCE.getSize());
+		Settings settings = Settings.INSTANCE;
+		assertEquals(Mode.Default, settings.getMode());
+		assertEquals(Difficulty.EASY, settings.getDifficulty());
+		assertEquals(true, settings.hasSound());
+		assertEquals(ScreenSize._640x480, settings.getSize());
 	}
 	
 	@Test
 	public void savingAndLoading(){
+		Settings settings = Settings.INSTANCE;
+		
 		Difficulty dif = Difficulty.MEDIUM;
 		Mode mode = Mode.Default;
 		boolean sound = false;
 		ScreenSize size = ScreenSize._1600x1200;
 		String fileName = "settings_test.properties";
 		
-		Settings.INSTANCE.setDifficulty(dif);
-		Settings.INSTANCE.setMode(mode);
-		Settings.INSTANCE.setSound(sound);
-		Settings.INSTANCE.setSize(size);
-		Settings.INSTANCE.persist(fileName);
+		settings.setDifficulty(dif);
+		settings.setMode(mode);
+		settings.setSound(sound);
+		settings.setSize(size);
+		settings.persist(fileName);
 		
-		Settings.INSTANCE.setDifficulty(Difficulty.HARD);
-		Settings.INSTANCE.setSound(!sound);
-		Settings.INSTANCE.setSize(ScreenSize._640x480);
-		assertNotEquals(dif, Settings.INSTANCE.getDifficulty());
-		assertNotEquals(sound, Settings.INSTANCE.hasSound());
-		assertNotEquals(size, Settings.INSTANCE.getSize());
+		settings.setDifficulty(Difficulty.HARD);
+		settings.setSound(!sound);
+		settings.setSize(ScreenSize._640x480);
+		assertNotEquals(dif, settings.getDifficulty());
+		assertNotEquals(sound, settings.hasSound());
+		assertNotEquals(size, settings.getSize());
 		
-		Settings.INSTANCE.load(fileName);
-		assertEquals(dif, Settings.INSTANCE.getDifficulty());
-		assertEquals(mode, Settings.INSTANCE.getMode());
-		assertEquals(sound, Settings.INSTANCE.hasSound());
-		assertEquals(size, Settings.INSTANCE.getSize());
+		settings.load(fileName);
+		assertEquals(dif, settings.getDifficulty());
+		assertEquals(mode, settings.getMode());
+		assertEquals(sound, settings.hasSound());
+		assertEquals(size, settings.getSize());
 	}
 
 }

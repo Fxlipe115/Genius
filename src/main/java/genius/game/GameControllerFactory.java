@@ -5,7 +5,7 @@ import genius.types.Mode;
 public class GameControllerFactory {
 
 	public static GameController create(Mode mode) {
-		if(mode != null) {
+		if (mode != null) {
 			switch (mode) {
 			case Default:
 				return new DefaultGameController();
@@ -16,5 +16,5 @@ public class GameControllerFactory {
 			throw new IllegalArgumentException("Could not create game controller for null mode");
 		}
 	}
-	
+
 }

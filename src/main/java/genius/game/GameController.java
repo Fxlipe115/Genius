@@ -7,6 +7,7 @@
  * Author  : Graeff
  */
 package genius.game;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -16,11 +17,7 @@ import javax.swing.Timer;
 import org.jfugue.theory.Note;
 
 import genius.player.Player;
-import genius.settings.Settings;
 import genius.types.Button;
-
-
-
 
 /**
  * @author Graeff
@@ -29,28 +26,31 @@ import genius.types.Button;
 public abstract class GameController implements java.awt.event.ActionListener {
 	protected Game gameModel;
 	protected GamePanel gameView;
-	
+
 	protected Player score;
 	protected int sequenceIndex;
-	protected int difficulty;
-	
+	protected int sequenceSize;
+
 	private boolean hasSound;
-	private int width;
-	private int height;
-	
+
 	private SequenceAnimator animator;
 	private SoundPlayer soundPlayer;
-	
-	public GameController() {
-		width = Settings.INSTANCE.getSize().getValue().width;
-		height = Settings.INSTANCE.getSize().getValue().height;
-		difficulty = Settings.INSTANCE.getDifficulty().getValue();
-		hasSound = Settings.INSTANCE.hasSound();
 
+	public void initialize(int width, int height, int sequenceSize, boolean hasSound) {
+		initializeModelView(width, height);
+		initializeAtributes(sequenceSize, hasSound);
+	}
+
+	private void initializeModelView(int width, int height) {
 		gameModel = new Game();
 		gameView = new GamePanel(width, height);
 		gameView.addController(this);
 		gameView.setVisible(true);
+	}
+
+	private void initializeAtributes(int sequenceSize, boolean hasSound) {
+		this.sequenceSize = sequenceSize;
+		this.hasSound = hasSound;
 		animator = null;
 		score = null;
 		soundPlayer = null;
@@ -61,21 +61,20 @@ public abstract class GameController implements java.awt.event.ActionListener {
 	}
 
 	public void begin() {
-		gameModel.generateSequence(difficulty);
+		gameModel.generateSequence(sequenceSize);
 		score = new Player();
 		sequenceIndex = 0;
 		playSequence();
 	}
-	
+
 	public void playSequence() {
-		if(animator == null) {
+		if (animator == null) {
 			animator = new SequenceAnimator();
 		}
-		List<Button> sequence = gameModel.getSequence().subList(0, score.getScore()+1);
-		animator.setSequence (sequence);
+		List<Button> sequence = gameModel.getSequence().subList(0, score.getScore() + 1);
+		animator.setSequence(sequence);
 		animator.play();
 	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -84,7 +83,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 			Button pressedButton = Button.values()[e.getModifiers()];
 			handleButtonClick(pressedButton);
 			break;
-		
+
 		case "wait":
 			gameView.getGui().setPressedButton(null);
 			break;
@@ -105,27 +104,27 @@ public abstract class GameController implements java.awt.event.ActionListener {
 	public abstract void handleButtonClick(Button pressedButton);
 
 	protected void playSound(Button pressedButtonColor) {
-		if(soundPlayer == null) {
+		if (soundPlayer == null) {
 			soundPlayer = new SoundPlayer();
 		}
 		soundPlayer.playSound(pressedButtonColor);
-	}	
-	
+	}
+
 	private class SequenceAnimator {
 		private List<Button> sequence;
-		private int  index;
+		private int index;
 		private Timer t;
-		
+
 		public SequenceAnimator() {
 			this.sequence = null;
 			this.index = -1;
 		}
-		
+
 		public void setSequence(List<Button> sequence) {
 			this.sequence = sequence;
 			this.index = 0;
 		}
-		
+
 		public void play() {
 			t = new Timer(1000, new ActionListener() {
 				@Override
@@ -133,7 +132,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 					gameView.showWaitMessage();
 					gameView.getBeginButton().setEnabled(false);
 					gameView.getExitButton().setEnabled(false);
-					if(!isFinished()) {
+					if (!isFinished()) {
 						animator.playNext();
 					} else {
 						t.setRepeats(false);
@@ -153,36 +152,36 @@ public abstract class GameController implements java.awt.event.ActionListener {
 			playSound(next);
 			index++;
 		}
-		
+
 		private boolean isFinished() {
 			return index == sequence.size();
 		}
 	}
-	
+
 	private class SoundPlayer {
 
 		private final Note GREEN_BUTTON_NOTE = new Note("E4i");
 		private final Note BLUE_BUTTON_NOTE = new Note("Ei");
 		private final Note RED_BUTTON_NOTE = new Note("Ai");
 		private final Note YELLOW_BUTTON_NOTE = new Note("C#i");
-		
+
 		private org.jfugue.player.Player player = new org.jfugue.player.Player();
 
 		public void playSound(Button pressedButtonColor) {
 			final Note note = getNote(pressedButtonColor);
-			if(note != null) {
+			if (note != null) {
 				new Thread(new Runnable() {
-				     public void run() {
-				    	 if(hasSound) {
-				    		 player.play(note);
-				    	 }
-				     }
+					public void run() {
+						if (hasSound) {
+							player.play(note);
+						}
+					}
 				}).start();
 			}
 		}
 
 		private Note getNote(Button pressedButtonColor) {
-			switch (pressedButtonColor) {			
+			switch (pressedButtonColor) {
 			case GREEN:
 				return GREEN_BUTTON_NOTE;
 			case BLUE:
@@ -198,4 +197,3 @@ public abstract class GameController implements java.awt.event.ActionListener {
 	}
 
 }
-
