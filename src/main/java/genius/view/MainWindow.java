@@ -10,7 +10,6 @@ package genius.view;
 
 import javax.swing.JFrame;
 
-import genius.controller.GameController;
 import genius.model.Settings;
 
 public class MainWindow extends JFrame {	
