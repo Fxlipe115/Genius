@@ -35,6 +35,7 @@ public class SettingsPanel extends JPanel implements Observer {
 	private JCheckBox muteCheckBox = new JCheckBox("");
 	private JButton backButton = new JButton("Back");
 	private JButton applyButton = new JButton("Apply");
+	private JButton revertButton = new JButton("Revert");
 
 	public SettingsPanel() {
 		SpringLayout springLayout = new SpringLayout();
@@ -89,10 +90,9 @@ public class SettingsPanel extends JPanel implements Observer {
 		springLayout.putConstraint(SpringLayout.EAST, applyButton, -6, SpringLayout.WEST, backButton);
 		add(applyButton);
 		
-		JButton btnRevert = new JButton("Revert");
-		springLayout.putConstraint(SpringLayout.WEST, btnRevert, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnRevert, 0, SpringLayout.SOUTH, backButton);
-		add(btnRevert);
+		springLayout.putConstraint(SpringLayout.WEST, revertButton, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, revertButton, 0, SpringLayout.SOUTH, backButton);
+		add(revertButton);
 	}
 
 	public void addSettingsController(ActionListener controller){
