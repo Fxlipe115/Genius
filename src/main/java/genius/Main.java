@@ -8,8 +8,6 @@
  */
 package genius;
 
-import genius.controller.ApplicationController;
-
 /**
  * @author Graeff
  *
