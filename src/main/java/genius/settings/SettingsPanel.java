@@ -149,6 +149,14 @@ public class SettingsPanel extends JPanel implements Observer {
 	public JButton getBackButton() {
 		return backButton;
 	}
+	
+	public JButton getApplyButton() {
+		return applyButton;
+	}
+	
+	public JButton getRevertButton() {
+		return revertButton;
+	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
