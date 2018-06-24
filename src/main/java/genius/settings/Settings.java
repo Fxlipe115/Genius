@@ -36,7 +36,7 @@ public enum Settings {
 	
 	private Settings() {
 		try {
-			load("settings.properties");
+			load(SettingsController.SETTINGS_FILE_NAME);
 		} catch (IOException e) {
 			difficulty = Difficulty.EASY;
 			mode = Mode.Default;

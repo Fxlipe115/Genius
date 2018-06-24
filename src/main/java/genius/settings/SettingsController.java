@@ -28,6 +28,8 @@ public class SettingsController implements ActionListener {
 	
 	private Settings settingsModel;
 	private SettingsPanel settingsView;
+	
+	protected static final String SETTINGS_FILE_NAME = "settings.properties";
 
 	public SettingsController(){
 		settingsModel = Settings.INSTANCE;
@@ -67,12 +69,12 @@ public class SettingsController implements ActionListener {
 		}
 		
 		if(e.getSource() == settingsView.getApplyButton()) {
-			settingsModel.persist("settings.properties");
+			settingsModel.persist(SETTINGS_FILE_NAME);
 		}
 		
 		if(e.getSource() == settingsView.getRevertButton()) {
 			try {
-				settingsModel.load("settings.properties");
+				settingsModel.load(SETTINGS_FILE_NAME);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
