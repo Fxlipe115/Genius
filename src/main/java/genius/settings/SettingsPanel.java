@@ -34,6 +34,8 @@ public class SettingsPanel extends JPanel implements Observer {
 	private JComboBox difficultyComboBox = new JComboBox(Difficulty.values());
 	private JCheckBox muteCheckBox = new JCheckBox("");
 	private JButton backButton = new JButton("Back");
+	private JButton applyButton = new JButton("Apply");
+	private JButton revertButton = new JButton("Revert");
 
 	public SettingsPanel() {
 		SpringLayout springLayout = new SpringLayout();
@@ -84,15 +86,13 @@ public class SettingsPanel extends JPanel implements Observer {
 		springLayout.putConstraint(SpringLayout.EAST, backButton, -10, SpringLayout.EAST, this);
 		add(backButton);
 		
-		JButton btnApply = new JButton("Apply Changes");
-		springLayout.putConstraint(SpringLayout.NORTH, btnApply, 0, SpringLayout.NORTH, backButton);
-		springLayout.putConstraint(SpringLayout.EAST, btnApply, -6, SpringLayout.WEST, backButton);
-		add(btnApply);
+		springLayout.putConstraint(SpringLayout.NORTH, applyButton, 0, SpringLayout.NORTH, backButton);
+		springLayout.putConstraint(SpringLayout.EAST, applyButton, -6, SpringLayout.WEST, backButton);
+		add(applyButton);
 		
-		JButton btnRevert = new JButton("Revert");
-		springLayout.putConstraint(SpringLayout.WEST, btnRevert, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, btnRevert, 0, SpringLayout.SOUTH, backButton);
-		add(btnRevert);
+		springLayout.putConstraint(SpringLayout.WEST, revertButton, 10, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.SOUTH, revertButton, 0, SpringLayout.SOUTH, backButton);
+		add(revertButton);
 	}
 
 	public void addSettingsController(ActionListener controller){
@@ -104,6 +104,14 @@ public class SettingsPanel extends JPanel implements Observer {
 	
 	public void addBackButtonController(ActionListener controller) {
 		backButton.addActionListener(controller);
+	}
+	
+	public void addApplyButtonController(ActionListener controller) {
+		applyButton.addActionListener(controller);
+	}
+	
+	public void addRevertButtonController(ActionListener controller) {
+		revertButton.addActionListener(controller);
 	}
 	
 	public void setScreenSizeComboBoxIndex(int index) {
@@ -140,6 +148,14 @@ public class SettingsPanel extends JPanel implements Observer {
 
 	public JButton getBackButton() {
 		return backButton;
+	}
+	
+	public JButton getApplyButton() {
+		return applyButton;
+	}
+	
+	public JButton getRevertButton() {
+		return revertButton;
 	}
 
 	@Override

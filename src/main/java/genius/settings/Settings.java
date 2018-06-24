@@ -94,33 +94,30 @@ public enum Settings {
 	
 	public void load(String file) {
 		File settingsFile = new File(file);
-		 
-		try {
-		    FileReader reader = new FileReader(settingsFile);
-		    Properties props = new Properties();
-		    props.load(reader);
 
-		    try {
-		    	String s = props.getProperty("size", ScreenSize._640x480.toString());
-		    	size = ScreenSize.valueOf("_"+s);
-		    } catch (IllegalArgumentException e) {
+		try (FileReader reader = new FileReader(settingsFile)) {
+			Properties props = new Properties();
+			props.load(reader);
+
+			try {
+				String s = props.getProperty("size", ScreenSize._640x480.toString());
+				size = ScreenSize.valueOf("_" + s);
+			} catch (IllegalArgumentException e) {
 				size = ScreenSize._640x480;
 			}
-		    try {
-		    	difficulty = Difficulty.valueOf(props.getProperty("difficulty", Difficulty.EASY.toString()));
-		    } catch (IllegalArgumentException e) {
+			try {
+				difficulty = Difficulty.valueOf(props.getProperty("difficulty", Difficulty.EASY.toString()));
+			} catch (IllegalArgumentException e) {
 				difficulty = Difficulty.EASY;
 			}
-		    try {
-		    	mode = Mode.valueOf(props.getProperty("mode", Mode.Default.toString()));
-		    } catch (IllegalArgumentException e) {
-		    	mode = Mode.Default;
+			try {
+				mode = Mode.valueOf(props.getProperty("mode", Mode.Default.toString()));
+			} catch (IllegalArgumentException e) {
+				mode = Mode.Default;
 			}
-		    sound = Boolean.parseBoolean(props.getProperty("sound", "true"));
-
-		    reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+			sound = Boolean.parseBoolean(props.getProperty("sound", "true"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
 }

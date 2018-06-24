@@ -9,6 +9,8 @@
 package genius.settings;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.swing.JComboBox;
 
 import genius.types.Difficulty;
@@ -26,16 +28,18 @@ public class SettingsController implements ActionListener {
 	
 	private Settings settingsModel;
 	private SettingsPanel settingsView;
+	
+	protected static final String SETTINGS_FILE_NAME = "settings.properties";
 
 	public SettingsController(){
 		settingsModel = Settings.INSTANCE;
+		settingsModel.load(SETTINGS_FILE_NAME);
 		settingsView = new SettingsPanel();
 		settingsView.addSettingsController(this);
+		settingsView.addApplyButtonController(this);
+		settingsView.addRevertButtonController(this);
 		
-		settingsView.setScreenSizeComboBoxIndex(settingsModel.getSize().ordinal());
-		settingsView.setGameModeComboBoxIndex(settingsModel.getMode().ordinal());
-		settingsView.setDifficultyComboBoxIndex(settingsModel.getDifficulty().ordinal());
-		settingsView.setMuteCheckBoxState(!settingsModel.hasSound());
+		refreshView();
 	}
 	
 	public SettingsController(ActionListener parent) {
@@ -62,8 +66,24 @@ public class SettingsController implements ActionListener {
 		}
 		
 		if(e.getSource() == settingsView.getMuteCheckBox()) {
-			settingsModel.setSound(((JCheckBox) e.getSource()).isSelected());
+			settingsModel.setSound(((JCheckBox) e.getSource()).isSelected() == false);
 		}
+		
+		if(e.getSource() == settingsView.getApplyButton()) {
+			settingsModel.persist(SETTINGS_FILE_NAME);
+		}
+		
+		if(e.getSource() == settingsView.getRevertButton()) {
+			settingsModel.load(SETTINGS_FILE_NAME);
+			refreshView();
+		}
+	}
+	
+	private void refreshView() {
+		settingsView.setScreenSizeComboBoxIndex(settingsModel.getSize().ordinal());
+		settingsView.setGameModeComboBoxIndex(settingsModel.getMode().ordinal());
+		settingsView.setDifficultyComboBoxIndex(settingsModel.getDifficulty().ordinal());
+		settingsView.setMuteCheckBoxState(!settingsModel.hasSound());
 	}
 
 }
