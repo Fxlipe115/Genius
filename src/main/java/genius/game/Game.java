@@ -7,48 +7,36 @@
  * Author  : 
  */
 package genius.game;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import genius.player.Player;
 import genius.types.Button;
-
 
 /**
  * @author Graeff
  *
  */
-public class Game extends java.util.Observable{
+public class Game extends java.util.Observable {
 	private List<Button> sequence;
-	private Player player;
 
-
-	public Game(){
+	public Game() {
 		sequence = null;
-		player = null;
 	}
 
-	
 	public void generateSequence(int size) {
 		Random random = new Random();
 		sequence = new ArrayList<Button>(size);
-		for(int i = 0; i < size; i++) {
+		for (int i = 0; i < size; i++) {
 			int newButtonIndex = random.nextInt(Button.values().length);
 			Button newButton = Button.values()[newButtonIndex];
 			sequence.add(i, newButton);
 		}
 	}
 
-	
 	public List<Button> getSequence() {
 		return sequence;
 	}
-	
-
-	public Player getPlayer() {
-		return player;
-	}
 
 }
-

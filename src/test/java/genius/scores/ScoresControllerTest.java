@@ -3,31 +3,25 @@ package genius.scores;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
 import org.junit.Test;
 
 import genius.player.Player;
-import genius.scores.ScoresController;
 
 public class ScoresControllerTest {
 	@Test
 	public void testSaveLoad() {
-		ScoresController scSave = new ScoresController();
-		scSave.deleteScores(false);
-		scSave.addScore(new Player("a", 1));
-		scSave.addScore(new Player("b", 2));
-		scSave.addScore(new Player("c", 3));
-		scSave.addScore(new Player("d", 4));
-		scSave.addScore(new Player("e", 5));
+		String testScoreFile = "score_test.genius";
 		
-		scSave.saveScores();
+		Scores savedScores = new Scores();
+		savedScores.addScore(new Player("a", 1));
+		savedScores.addScore(new Player("b", 2));
+		savedScores.addScore(new Player("c", 3));
+		savedScores.addScore(new Player("d", 4));
+		savedScores.addScore(new Player("e", 5));
 		
-		ScoresController scLoad = new ScoresController();
-		scLoad.loadScores();
+		ScoresFileUtils.saveScores(testScoreFile, savedScores);
 		
-		Scores savedScores = scSave.getScoresModel().getScores();
-		Scores loadedScores = scLoad.getScoresModel().getScores();
+		Scores loadedScores = ScoresFileUtils.loadScores(testScoreFile);
 		
 		assertEquals(savedScores.size(), loadedScores.size());
 		

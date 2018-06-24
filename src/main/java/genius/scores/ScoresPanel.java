@@ -37,7 +37,7 @@ public class ScoresPanel extends JPanel {
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		JScrollPane scrollPane = new JScrollPane(table);
 
-		btnClearScores = new JButton("Clean scores");
+		btnClearScores = new JButton("Clear scores");
 
 		btnBack = new JButton("Back");
 		GroupLayout groupLayout = new GroupLayout(this);
