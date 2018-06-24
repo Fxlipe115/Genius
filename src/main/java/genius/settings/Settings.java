@@ -8,37 +8,29 @@
  */
 package genius.settings;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Properties;
+import java.io.Serializable;
+import java.util.Observable;
 
 import genius.types.Difficulty;
 import genius.types.Mode;
 import genius.types.ScreenSize;
 
-
 /**
  * @author Graeff
  *
  */
-public enum Settings {
-	INSTANCE;
-
+public class Settings extends Observable implements Serializable {
+	private static final long serialVersionUID = -9047313381641835943L;
 	private Difficulty difficulty;
-
 	private Mode mode;
-	
-	private boolean sound;
-	
+	private boolean mute;
 	private ScreenSize size;
-	
-	private Settings() {
-		difficulty = Difficulty.EASY;
-		mode = Mode.Default;
-		sound = true;
-		size = ScreenSize._640x480;
+
+	public Settings() {
+		setDifficulty(Difficulty.EASY);
+		setMode(Mode.Default);
+		setMute(true);
+		setSize(ScreenSize._640x480);
 	}
 
 	public Difficulty getDifficulty() {
@@ -47,6 +39,7 @@ public enum Settings {
 
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
+		notifyObservers(difficulty);
 	}
 
 	public Mode getMode() {
@@ -55,14 +48,16 @@ public enum Settings {
 
 	public void setMode(Mode mode) {
 		this.mode = mode;
+		notifyObservers(mode);
 	}
 
-	public Boolean hasSound() {
-		return sound;
+	public Boolean isMute() {
+		return mute;
 	}
 
-	public void setSound(boolean sound) {
-		this.sound = sound;
+	public void setMute(boolean isMute) {
+		this.mute = isMute;
+		notifyObservers(Boolean.valueOf(isMute));
 	}
 
 	public ScreenSize getSize() {
@@ -71,54 +66,18 @@ public enum Settings {
 
 	public void setSize(ScreenSize size) {
 		this.size = size;
+		notifyObservers(size);
 	}
-	
-	public void persist(String file) {
-		File settingsFile = new File(file);
 
-		try {
-			FileWriter writer = new FileWriter(settingsFile);
-			Properties props = new Properties();
-		    
-		    props.setProperty("difficulty", String.valueOf(difficulty));
-		    props.setProperty("mode", String.valueOf(mode));
-		    props.setProperty("sound", String.valueOf(sound));
-		    props.setProperty("size", String.valueOf(size));
-		    props.store(writer, "settings");
-		    
-		    writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void load(String file) {
-		File settingsFile = new File(file);
-
-		try (FileReader reader = new FileReader(settingsFile)) {
-			Properties props = new Properties();
-			props.load(reader);
-
-			try {
-				String s = props.getProperty("size", ScreenSize._640x480.toString());
-				size = ScreenSize.valueOf("_" + s);
-			} catch (IllegalArgumentException e) {
-				size = ScreenSize._640x480;
-			}
-			try {
-				difficulty = Difficulty.valueOf(props.getProperty("difficulty", Difficulty.EASY.toString()));
-			} catch (IllegalArgumentException e) {
-				difficulty = Difficulty.EASY;
-			}
-			try {
-				mode = Mode.valueOf(props.getProperty("mode", Mode.Default.toString()));
-			} catch (IllegalArgumentException e) {
-				mode = Mode.Default;
-			}
-			sound = Boolean.parseBoolean(props.getProperty("sound", "true"));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+	@Override
+	public void notifyObservers() {
+		setChanged();
+		notifyObservers(difficulty);
+		setChanged();
+		notifyObservers(mode);
+		setChanged();
+		notifyObservers(Boolean.valueOf(mute));
+		setChanged();
+		notifyObservers(size);
 	}
 }
-

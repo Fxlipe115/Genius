@@ -10,8 +10,6 @@ package genius.settings;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
-
 import org.junit.Test;
 
 import genius.settings.Settings;
@@ -19,45 +17,43 @@ import genius.types.Difficulty;
 import genius.types.Mode;
 import genius.types.ScreenSize;
 
-
-
 public class SettingsTest {
 	@Test
-	public void instatiatingCorrectValues(){
-		Settings settings = Settings.INSTANCE;
+	public void instatiatingCorrectValues() {
+		Settings settings = new Settings();
 		assertEquals(Mode.Default, settings.getMode());
 		assertEquals(Difficulty.EASY, settings.getDifficulty());
-		assertEquals(true, settings.hasSound());
+		assertEquals(true, settings.isMute());
 		assertEquals(ScreenSize._640x480, settings.getSize());
 	}
-	
+
 	@Test
 	public void savingAndLoading() {
-		Settings settings = Settings.INSTANCE;
-		
+		Settings settings = new Settings();
+
 		Difficulty dif = Difficulty.MEDIUM;
 		Mode mode = Mode.Default;
 		boolean sound = false;
 		ScreenSize size = ScreenSize._1600x1200;
 		String fileName = "settings_test.properties";
-		
+
 		settings.setDifficulty(dif);
 		settings.setMode(mode);
-		settings.setSound(sound);
+		settings.setMute(sound);
 		settings.setSize(size);
-		settings.persist(fileName);
-		
+		SettingsFileUtils.saveSettings(fileName, settings);
+
 		settings.setDifficulty(Difficulty.HARD);
-		settings.setSound(!sound);
+		settings.setMute(!sound);
 		settings.setSize(ScreenSize._640x480);
 		assertNotEquals(dif, settings.getDifficulty());
-		assertNotEquals(sound, settings.hasSound());
+		assertNotEquals(sound, settings.isMute());
 		assertNotEquals(size, settings.getSize());
-		
-		settings.load(fileName);
+
+		settings = SettingsFileUtils.loadSettings(fileName);
 		assertEquals(dif, settings.getDifficulty());
 		assertEquals(mode, settings.getMode());
-		assertEquals(sound, settings.hasSound());
+		assertEquals(sound, settings.isMute());
 		assertEquals(size, settings.getSize());
 	}
 
