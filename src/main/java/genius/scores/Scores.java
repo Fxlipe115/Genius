@@ -27,7 +27,7 @@ public class Scores extends java.util.Observable implements Serializable {
 
 	private List<Player> scores;
 
-	private static final int MAX_SCORES = 10;
+	public static final int MAX_SCORES = 10;
 
 	public Scores() {
 
