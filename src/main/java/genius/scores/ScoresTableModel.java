@@ -30,10 +30,10 @@ public class ScoresTableModel extends AbstractTableModel {
 			value = row + 1;
 			break;
 		case 1:
-			value = scores.getScores().get(row).getName();
+			value = scores.getPlayerAt(row).getName();
 			break;
 		case 2:
-			value = scores.getScores().get(row).getScore();
+			value = scores.getPlayerAt(row).getScore();
 		default:
 			break;
 		}
@@ -48,7 +48,7 @@ public class ScoresTableModel extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		if(scores != null) {
-			return scores.getScores().size();
+			return scores.size();
 		} else{
 			return 0;
 		}

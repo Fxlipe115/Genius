@@ -9,38 +9,27 @@ import genius.player.Player;
 import genius.scores.Scores;
 
 public class ScoresTest {
-	
-	
+
 	@Test
 	public void testScoreSize() {
-	
+
 		Scores scorelist = new Scores();
-		
-		Player jogador = new Player();
-		
-		scorelist.addScore(jogador);
-		scorelist.addScore(jogador);
-		scorelist.addScore(jogador);
-		scorelist.addScore(jogador);
-		scorelist.addScore(jogador);
-		scorelist.addScore(jogador);
-		scorelist.addScore(jogador);
-		scorelist.addScore(jogador);
-		scorelist.addScore(jogador);
-		scorelist.addScore(jogador);
-		scorelist.addScore(jogador);
-		
-		
-		assertEquals(10,scorelist.getScores().size() );
-		
-		
+
+		for (int i = 0; i < 10; i++) {
+			Player player = new Player("", i);
+			scorelist.addScore(player);
+			assertEquals(i + 1, scorelist.size());
+		}
+		assertEquals(0, scorelist.lowestScore());
+
+		scorelist.addScore(new Player("", 100));
+		assertEquals(Scores.MAX_SCORES, scorelist.size());
+		assertEquals(1, scorelist.lowestScore());
+
+		scorelist.addScore(new Player("", 200));
+		assertEquals(Scores.MAX_SCORES, scorelist.size());
+		assertEquals(2, scorelist.lowestScore());
+
 	}
 
-
-
-
-
 }
-
-
-

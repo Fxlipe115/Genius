@@ -7,6 +7,7 @@
  * Author  : Henrique Barboza
  */
 package genius.scores;
+
 import java.util.List;
 
 import genius.player.Player;
@@ -16,59 +17,60 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-
 /**
  * @author Henrique Barboza
  *
  */
-public class Scores extends java.util.Observable implements Serializable{
-	
-	
+public class Scores extends java.util.Observable implements Serializable {
+
 	private static final long serialVersionUID = 4258750736263856738L;
-	
+
 	private List<Player> scores;
-	
-	private static final int MAX_SCORES = 10;
 
+	public static final int MAX_SCORES = 10;
 
-	
-	public Scores(){
+	public Scores() {
 
-		
 		this.scores = new ArrayList<Player>();
 	}
+
 	/**
-	 *@param player
+	 * @param player
 	 * 
-	 * Method adds a new score to the list if
-	 * it is amongst the top 10 scores.
-	 *  
+	 * Method adds a new score to the list if it is amongst the top 10 scores.
+	 * 
 	 */
 	public void addScore(Player player) {
-	
+
 		this.scores.add(player);
 		this.sort();
-		
-		if(this.scores.size() > MAX_SCORES)
-		{
-			this.scores.remove(MAX_SCORES);   //Removes the 11th score, keeps it at 10.
+
+		if (this.scores.size() > MAX_SCORES) {
+			this.scores.remove(MAX_SCORES); // Removes the 11th score, keeps it at 10.
 		}
 
 	}
 	
-	/**
-	 * 
-	 */
-	public List<Player> getScores() {
-		return scores;
+	public Player getPlayerAt(int index) {
+		return this.scores.get(index);
 	}
+	
+	public int size() {
+		return this.scores.size();
+	}
+	
+	public int lowestScore() {
+		if (scores != null && !scores.isEmpty()) {
+			return scores.get(scores.size()-1).getScore();
+		}
+		return 0;
+	}
+
 	/**
 	 * Cleans scores list
 	 * 
 	 */
 	public void deleteAllScores() {
-
-		
 		this.scores.clear();
 	}
 
@@ -79,30 +81,22 @@ public class Scores extends java.util.Observable implements Serializable{
 	 *
 	 */
 	public void deleteScore(int index) {
-		
 		this.scores.remove(index);
 	}
 
 	/**
-	 * 	Sorts score list based on each player's score
+	 * Sorts score list based on each player's score
 	 * 
 	 */
-	private void sort(){
-		
-		
-		Collections.sort(scores, Collections.reverseOrder(new Comparator<Player>() {
-	        @Override
-	        public int compare(Player player1, Player player2)
-	        {
-	        	return Integer.valueOf(player1.getScore()).compareTo(Integer.valueOf(player2.getScore()));
-	        }
-	    }));
-		
-	}
-	
-	/**
-	 */ 
+	private void sort() {
 
+		Collections.sort(scores, Collections.reverseOrder(new Comparator<Player>() {
+			@Override
+			public int compare(Player player1, Player player2) {
+				return Integer.valueOf(player1.getScore()).compareTo(Integer.valueOf(player2.getScore()));
+			}
+		}));
+
+	}
 
 }
-
