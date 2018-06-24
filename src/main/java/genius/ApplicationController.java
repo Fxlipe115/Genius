@@ -16,6 +16,7 @@ import genius.game.GameControllerFactory;
 import genius.scores.ScoresController;
 import genius.settings.Settings;
 import genius.settings.SettingsController;
+import genius.settings.SettingsFileUtils;
 import genius.MainWindow;
 import genius.MenuPanel;
 
@@ -25,10 +26,9 @@ import genius.MenuPanel;
  */
 public class ApplicationController implements ActionListener {
 	private MainWindow mainWindow;
-	private Settings settings;
 
 	public void initApplication() {
-		settings = Settings.INSTANCE;
+		Settings settings = SettingsFileUtils.loadSettings(SettingsFileUtils.SETTINGS_FILE_NAME);
 		int width = settings.getSize().getValue().width;
 		int height = settings.getSize().getValue().height;
 		mainWindow = new MainWindow(width, height);
@@ -70,10 +70,11 @@ public class ApplicationController implements ActionListener {
 	}
 
 	private void initGame() {
+		Settings settings = SettingsFileUtils.loadSettings(SettingsFileUtils.SETTINGS_FILE_NAME);
 		int width = settings.getSize().getValue().width;
 		int height = settings.getSize().getValue().height;
 		int sequenceSize = settings.getDifficulty().getValue();
-		boolean hasSound = settings.hasSound();
+		boolean hasSound = !settings.isMute();
 		GameController gameController = GameControllerFactory.create(settings.getMode());
 		gameController.initialize(width, height, sequenceSize, hasSound);
 		gameController.getGameView().addController(this);
