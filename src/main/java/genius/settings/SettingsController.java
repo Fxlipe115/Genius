@@ -74,11 +74,7 @@ public class SettingsController implements ActionListener {
 		}
 		
 		if(e.getSource() == settingsView.getRevertButton()) {
-			try {
-				settingsModel.load(SETTINGS_FILE_NAME);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			settingsModel.load(SETTINGS_FILE_NAME);
 			refreshView();
 		}
 	}
