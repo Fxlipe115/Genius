@@ -32,7 +32,7 @@ public class SettingsTest {
 	}
 	
 	@Test
-	public void savingAndLoading() throws IOException{
+	public void savingAndLoading() {
 		Settings settings = Settings.INSTANCE;
 		
 		Difficulty dif = Difficulty.MEDIUM;
