@@ -36,7 +36,7 @@ public class SettingsController implements ActionListener {
 		settingsView.addApplyButtonController(this);
 		settingsView.addRevertButtonController(this);
 		
-		refreshGraphicComponents();
+		refreshView();
 	}
 	
 	public SettingsController(ActionListener parent) {
@@ -76,11 +76,11 @@ public class SettingsController implements ActionListener {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			refreshGraphicComponents();
+			refreshView();
 		}
 	}
 	
-	private void refreshGraphicComponents() {
+	private void refreshView() {
 		settingsView.setScreenSizeComboBoxIndex(settingsModel.getSize().ordinal());
 		settingsView.setGameModeComboBoxIndex(settingsModel.getMode().ordinal());
 		settingsView.setDifficultyComboBoxIndex(settingsModel.getDifficulty().ordinal());
