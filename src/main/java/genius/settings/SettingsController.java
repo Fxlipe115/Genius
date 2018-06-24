@@ -33,6 +33,7 @@ public class SettingsController implements ActionListener {
 
 	public SettingsController(){
 		settingsModel = Settings.INSTANCE;
+		settingsModel.load(SETTINGS_FILE_NAME);
 		settingsView = new SettingsPanel();
 		settingsView.addSettingsController(this);
 		settingsView.addApplyButtonController(this);
