@@ -10,6 +10,8 @@ package genius.settings;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 import genius.settings.Settings;
@@ -30,7 +32,7 @@ public class SettingsTest {
 	}
 	
 	@Test
-	public void savingAndLoading(){
+	public void savingAndLoading() throws IOException{
 		Settings settings = Settings.INSTANCE;
 		
 		Difficulty dif = Difficulty.MEDIUM;
