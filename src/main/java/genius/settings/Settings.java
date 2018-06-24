@@ -92,7 +92,7 @@ public enum Settings {
 		}
 	}
 	
-	public void load(String file) throws IOException {
+	public void load(String file) {
 		File settingsFile = new File(file);
 
 		try (FileReader reader = new FileReader(settingsFile)) {
@@ -116,6 +116,8 @@ public enum Settings {
 				mode = Mode.Default;
 			}
 			sound = Boolean.parseBoolean(props.getProperty("sound", "true"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 	}
 }
