@@ -9,6 +9,8 @@
 package genius.settings;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.swing.JComboBox;
 
 import genius.types.Difficulty;
@@ -69,7 +71,11 @@ public class SettingsController implements ActionListener {
 		}
 		
 		if(e.getSource() == settingsView.getRevertButton()) {
-			settingsModel.load("settings.properties");
+			try {
+				settingsModel.load("settings.properties");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			refreshGraphicComponents();
 		}
 	}
