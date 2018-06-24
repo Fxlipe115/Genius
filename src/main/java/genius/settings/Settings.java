@@ -35,10 +35,14 @@ public enum Settings {
 	private ScreenSize size;
 	
 	private Settings() {
-		difficulty = Difficulty.EASY;
-		mode = Mode.Default;
-		sound = true;
-		size = ScreenSize._640x480;
+		try {
+			load("settings.properties");
+		} catch (IOException e) {
+			difficulty = Difficulty.EASY;
+			mode = Mode.Default;
+			sound = true;
+			size = ScreenSize._640x480;
+		}		
 	}
 
 	public Difficulty getDifficulty() {
