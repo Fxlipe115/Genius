@@ -31,7 +31,7 @@ public class ScoresTest {
 		scorelist.addScore(jogador);
 		
 		
-		assertEquals(10,scorelist.getScores().size() );
+		assertEquals(10,scorelist.size());
 		
 		
 	}

@@ -26,14 +26,14 @@ public class ScoresControllerTest {
 		ScoresController scLoad = new ScoresController();
 		scLoad.loadScores();
 		
-		List<Player> savedScores = scSave.getScoresModel().getScores().getScores();
-		List<Player> loadedScores = scLoad.getScoresModel().getScores().getScores();
+		Scores savedScores = scSave.getScoresModel().getScores();
+		Scores loadedScores = scLoad.getScoresModel().getScores();
 		
 		assertEquals(savedScores.size(), loadedScores.size());
 		
 		for(int i = 0; i < savedScores.size(); i++) {
-			assertTrue(savedScores.get(i).getName().equals(loadedScores.get(i).getName()));
-			assertEquals(savedScores.get(i).getScore(), loadedScores.get(i).getScore());
+			assertTrue(savedScores.getPlayerAt(i).getName().equals(loadedScores.getPlayerAt(i).getName()));
+			assertEquals(savedScores.getPlayerAt(i).getScore(), loadedScores.getPlayerAt(i).getScore());
 		}
 	}
 }
