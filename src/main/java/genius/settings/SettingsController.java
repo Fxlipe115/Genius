@@ -30,10 +30,8 @@ public class SettingsController {
 
 	public SettingsController() {
 		settingsModel = new Settings();
-		settingsModel = SettingsFileUtils.loadSettings(SettingsFileUtils.SETTINGS_FILE_NAME);
 		settingsView = new SettingsPanel();
-		settingsModel.addObserver(settingsView);
-		settingsModel.notifyObservers();
+		setSettingsModel(SettingsFileUtils.loadSettings(SettingsFileUtils.SETTINGS_FILE_NAME));
 		settingsView.addScreenSizeComboBoxController(screenSizeComboBoxController());
 		settingsView.addGameModeComboBoxController(gameModeComboBoxController());
 		settingsView.addDifficultyComboBoxController(difficultyComboBoxController());
@@ -49,6 +47,12 @@ public class SettingsController {
 
 	public SettingsPanel getSettingsView() {
 		return settingsView;
+	}
+	
+	private void setSettingsModel(Settings settings) {
+		this.settingsModel = settings;
+		settingsModel.addObserver(settingsView);
+		settingsModel.notifyObservers();
 	}
 
 	private ActionListener screenSizeComboBoxController() {
@@ -113,8 +117,7 @@ public class SettingsController {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				settingsModel = SettingsFileUtils.loadSettings(SettingsFileUtils.SETTINGS_FILE_NAME);
-				settingsModel.notifyObservers();
+				setSettingsModel(SettingsFileUtils.loadSettings(SettingsFileUtils.SETTINGS_FILE_NAME));
 			}
 		};
 	}
