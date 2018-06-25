@@ -63,7 +63,7 @@ public class Scores extends java.util.Observable implements Serializable {
 		if (scores != null && !scores.isEmpty()) {
 			return scores.get(scores.size()-1).getScore();
 		}
-		return 1;
+		return 0;
 	}
 
 	/**

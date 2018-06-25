@@ -163,10 +163,10 @@ public abstract class GameController implements java.awt.event.ActionListener {
 	
 	
 	public void gameOver() {
-		Scores scores = ScoresFileUtils.loadScores(ScoresFileUtils.SCORES_FILE_NAME);
-		if(player.getScore() >= scores.lowestScore()) {
-			String name = JOptionPane.showInputDialog(gameView, "New score", 
-					"Insert your name", JOptionPane.PLAIN_MESSAGE);
+		Scores scores = ScoresFileUtils.loadScores(ScoresFileUtils.SCORES_FILE_NAME); 
+		if(isHighScore(scores)) {
+			String name = JOptionPane.showInputDialog(gameView, "Insert your name:", 
+					"New high score", JOptionPane.PLAIN_MESSAGE);
 			if(name != null) {
 				if(!name.isEmpty()) {
 					player.setName(name);
@@ -175,6 +175,22 @@ public abstract class GameController implements java.awt.event.ActionListener {
 				}
 			}
 		}
+	}
+
+	private boolean isHighScore(Scores scores) {
+		return tableFull(scores) ? isBiggerThanLowestScore(scores) : isBiggerThanZero();
+	}
+
+	private boolean isBiggerThanZero() {
+		return player.getScore() > 0;
+	}
+
+	private boolean isBiggerThanLowestScore(Scores scores) {
+		return player.getScore() > scores.lowestScore();
+	}
+
+	private boolean tableFull(Scores scores) {
+		return scores.size() == Scores.MAX_SCORES;
 	}
 
 	private class SoundPlayer {
