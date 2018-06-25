@@ -117,7 +117,7 @@ public class SettingsPanel extends JPanel implements Observer {
 		muteCheckBox.addActionListener(controller);
 	}
 
-	public void addBackButtonController(ActionListener controller) {
+	public void addBackButtonListener(ActionListener controller) {
 		backButton.addActionListener(controller);
 	}
 

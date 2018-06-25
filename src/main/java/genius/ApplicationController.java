@@ -8,6 +8,7 @@
  */
 package genius;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,7 +25,7 @@ import genius.MenuPanel;
  * @author Graeff
  *
  */
-public class ApplicationController implements ActionListener {
+public class ApplicationController {
 	private MainWindow mainWindow;
 
 	public void initApplication() {
@@ -35,38 +36,49 @@ public class ApplicationController implements ActionListener {
 		openMenu();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch (e.getActionCommand()) {
-		case "New Game":
-			initGame();
-			break;
-		case "Scores":
-			openScores();
-			break;
-		case "Options":
-			openSettings();
-			break;
-		case "Exit":
-			close();
-			break;
-		case "Back":
-			openMenu();
-			break;
-		default:
-			break;
-		}
-	}
-
 	private void openMenu() {
 		MenuPanel menuPanel = new MenuPanel();
-		menuPanel.addNewGameButtonListener(this);
-		menuPanel.addScoresButtonListener(this);
-		menuPanel.addOptionsButtonListener(this);
-		menuPanel.addExitButtonListener(this);
-		mainWindow.setContentPane(menuPanel);
-		mainWindow.revalidate();
-		mainWindow.repaint();
+		menuPanel.addNewGameButtonListener(newGameButtonListener());
+		menuPanel.addScoresButtonListener(scoresButtonListener());
+		menuPanel.addSettingsButtonListener(optionsButtonListener());
+		menuPanel.addExitButtonListener(exitButtonListener());
+		setMainWindowContentPane(menuPanel);
+	}
+
+	private ActionListener newGameButtonListener() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				initGame();
+			}
+		};
+	}
+
+	private ActionListener scoresButtonListener() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				openScores();
+			}
+		};
+	}
+
+	private ActionListener optionsButtonListener() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				openSettings();
+			}
+		};
+	}
+
+	private ActionListener exitButtonListener() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				close();
+			}
+		};
 	}
 
 	private void initGame() {
@@ -77,24 +89,33 @@ public class ApplicationController implements ActionListener {
 		boolean hasSound = !settings.isMute();
 		GameController gameController = GameControllerFactory.create(settings.getMode());
 		gameController.initialize(width, height, sequenceSize, hasSound);
-		gameController.getGameView().addController(this);
-		mainWindow.setContentPane(gameController.getGameView());
-		mainWindow.revalidate();
-		mainWindow.repaint();
+		gameController.getGameView().addExitButtonListener(backButtonListener());
+		setMainWindowContentPane(gameController.getGameView());
 	}
 
 	private void openSettings() {
 		SettingsController settingsController = new SettingsController();
-		settingsController.getSettingsView().addBackButtonController(this);
-		mainWindow.setContentPane(settingsController.getSettingsView());
-		mainWindow.revalidate();
-		mainWindow.repaint();
+		settingsController.getSettingsView().addBackButtonListener(backButtonListener());
+		setMainWindowContentPane(settingsController.getSettingsView());
 	}
 
 	private void openScores() {
 		ScoresController scoresController = new ScoresController();
-		scoresController.getScoresView().addBackButtonListener(this);
-		mainWindow.setContentPane(scoresController.getScoresView());
+		scoresController.getScoresView().addBackButtonListener(backButtonListener());
+		setMainWindowContentPane(scoresController.getScoresView());
+	}
+
+	private ActionListener backButtonListener() {
+		return new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				openMenu();
+			}
+		};
+	}
+
+	private void setMainWindowContentPane(Container container) {
+		mainWindow.setContentPane(container);
 		mainWindow.revalidate();
 		mainWindow.repaint();
 	}

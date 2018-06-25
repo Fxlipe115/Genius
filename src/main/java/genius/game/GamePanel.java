@@ -72,6 +72,9 @@ public class GamePanel extends JLayeredPane {
 		beginButton.addActionListener(controller);
 		exitButton.addActionListener(controller);
 	}
+	public void addExitButtonListener(ActionListener l) {
+		exitButton.addActionListener(l);
+	}
 
 	public GeniusButtons getGui() {
 		return gui;

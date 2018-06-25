@@ -42,7 +42,7 @@ public class SettingsController {
 
 	public SettingsController(ActionListener parent) {
 		this();
-		settingsView.addBackButtonController(parent);
+		settingsView.addBackButtonListener(parent);
 	}
 
 	public SettingsPanel getSettingsView() {
