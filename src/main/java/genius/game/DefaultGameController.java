@@ -22,20 +22,22 @@ public class DefaultGameController extends GameController {
 		playSound(pressedButton);
 
 		if (gameModel.getSequence().get(sequenceIndex) == pressedButton) {
-			if (sequenceIndex < score.getScore()) {
+			if (sequenceIndex < player.getScore()) {
 				sequenceIndex++;
 			} else { // hit a full sequence
-				score.incrementScore();
+				player.incrementScore();
 				sequenceIndex = 0;
-				if (score.getScore() == sequenceSize) {
+				if (player.getScore() == sequenceSize) {
 					gameView.showWinMessage();
+					gameOver();
 				} else {
 					playSequence();
-					gameView.setScore(score.getScore());
+					gameView.setScore(player.getScore());
 				}
 			}
 		} else {
 			gameView.showLoseMessage();
+			gameOver();
 		}
 	}
 

@@ -12,11 +12,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 import org.jfugue.theory.Note;
 
 import genius.player.Player;
+import genius.scores.Scores;
+import genius.scores.ScoresFileUtils;
 import genius.types.Button;
 
 /**
@@ -27,7 +30,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 	protected Game gameModel;
 	protected GamePanel gameView;
 
-	protected Player score;
+	protected Player player;
 	protected int sequenceIndex;
 	protected int sequenceSize;
 
@@ -52,7 +55,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 		this.sequenceSize = sequenceSize;
 		this.hasSound = hasSound;
 		animator = null;
-		score = null;
+		player = null;
 		soundPlayer = null;
 	}
 
@@ -62,7 +65,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 
 	public void begin() {
 		gameModel.generateSequence(sequenceSize);
-		score = new Player();
+		player = new Player();
 		sequenceIndex = 0;
 		playSequence();
 	}
@@ -71,7 +74,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 		if (animator == null) {
 			animator = new SequenceAnimator();
 		}
-		List<Button> sequence = gameModel.getSequence().subList(0, score.getScore() + 1);
+		List<Button> sequence = gameModel.getSequence().subList(0, player.getScore() + 1);
 		animator.setSequence(sequence);
 		animator.play();
 	}
@@ -155,6 +158,22 @@ public abstract class GameController implements java.awt.event.ActionListener {
 
 		private boolean isFinished() {
 			return index == sequence.size();
+		}
+	}
+	
+	
+	public void gameOver() {
+		Scores scores = ScoresFileUtils.loadScores(ScoresFileUtils.SCORES_FILE_NAME);
+		if(player.getScore() >= scores.lowestScore()) {
+			String name = JOptionPane.showInputDialog(gameView, "New score", 
+					"Insert your name", JOptionPane.PLAIN_MESSAGE);
+			if(name != null) {
+				if(!name.isEmpty()) {
+					player.setName(name);
+					scores.addScore(player);
+					ScoresFileUtils.saveScores(ScoresFileUtils.SCORES_FILE_NAME, scores);
+				}
+			}
 		}
 	}
 
