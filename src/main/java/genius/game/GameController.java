@@ -34,14 +34,14 @@ public abstract class GameController implements java.awt.event.ActionListener {
 	protected int sequenceIndex;
 	protected int sequenceSize;
 
-	private boolean hasSound;
+	private boolean mute;
 
 	private SequenceAnimator animator;
 	private SoundPlayer soundPlayer;
 
-	public void initialize(int width, int height, int sequenceSize, boolean hasSound) {
+	public void initialize(int width, int height, int sequenceSize, boolean mute) {
 		initializeModelView(width, height);
-		initializeAtributes(sequenceSize, hasSound);
+		initializeAtributes(sequenceSize, mute);
 	}
 
 	private void initializeModelView(int width, int height) {
@@ -51,9 +51,9 @@ public abstract class GameController implements java.awt.event.ActionListener {
 		gameView.setVisible(true);
 	}
 
-	private void initializeAtributes(int sequenceSize, boolean hasSound) {
+	private void initializeAtributes(int sequenceSize, boolean mute) {
 		this.sequenceSize = sequenceSize;
-		this.hasSound = hasSound;
+		this.mute = mute;
 		animator = null;
 		player = null;
 		soundPlayer = null;
@@ -207,7 +207,7 @@ public abstract class GameController implements java.awt.event.ActionListener {
 			if (note != null) {
 				new Thread(new Runnable() {
 					public void run() {
-						if (hasSound) {
+						if (mute) {
 							player.play(note);
 						}
 					}
