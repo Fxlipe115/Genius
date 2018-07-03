@@ -1,10 +1,8 @@
 /*
- * Final project for the course TÃ©cnicas de ConstruÃ§Ã£o de Programas
+ * Final project for the course Técnicas de Construção de Programas
  * Universidade Federal do Rio Grande do Sul
- * Instituto de InformÃ¡tica
- *
- * Created : May 13, 2018
- * Author  : Henrique Barboza
+ * Instituto de Informática
+ * 
  */
 package genius.scores;
 
@@ -17,10 +15,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-/**
- * @author Henrique Barboza
- *
- */
 public class Scores extends java.util.Observable implements Serializable {
 
 	private static final long serialVersionUID = 4258750736263856738L;

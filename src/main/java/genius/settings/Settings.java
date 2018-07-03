@@ -2,9 +2,7 @@
  * Final project for the course Técnicas de Construção de Programas
  * Universidade Federal do Rio Grande do Sul
  * Instituto de Informática
- *
- * Created : May 13, 2018
- * Author  : Graeff
+ * 
  */
 package genius.settings;
 
@@ -15,10 +13,6 @@ import genius.types.Difficulty;
 import genius.types.Mode;
 import genius.types.ScreenSize;
 
-/**
- * @author Graeff
- *
- */
 public class Settings extends Observable implements Serializable {
 	private static final long serialVersionUID = -9047313381641835943L;
 	private Difficulty difficulty;

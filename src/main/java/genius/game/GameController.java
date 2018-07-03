@@ -2,9 +2,7 @@
  * Final project for the course Técnicas de Construção de Programas
  * Universidade Federal do Rio Grande do Sul
  * Instituto de Informática
- *
- * Created : May 13, 2018
- * Author  : Graeff
+ * 
  */
 package genius.game;
 
@@ -22,10 +20,6 @@ import genius.scores.Scores;
 import genius.scores.ScoresFileUtils;
 import genius.types.Button;
 
-/**
- * @author Graeff
- *
- */
 public abstract class GameController implements java.awt.event.ActionListener {
 	protected Game gameModel;
 	protected GamePanel gameView;

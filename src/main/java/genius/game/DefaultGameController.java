@@ -2,18 +2,12 @@
  * Final project for the course Técnicas de Construção de Programas
  * Universidade Federal do Rio Grande do Sul
  * Instituto de Informática
- *
- * Created : June 6, 2018
- * Author  : Matheus
+ * 
  */
 package genius.game;
 
 import genius.types.Button;
 
-/**
- * @author Matheus
- *
- */
 public class DefaultGameController extends GameController {
 
 	@Override
