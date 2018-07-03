@@ -23,7 +23,7 @@ public class SettingsTest {
 		Settings settings = new Settings();
 		assertEquals(Mode.Default, settings.getMode());
 		assertEquals(Difficulty.EASY, settings.getDifficulty());
-		assertEquals(true, settings.isMute());
+		assertEquals(false, settings.isMute());
 		assertEquals(ScreenSize._640x480, settings.getSize());
 	}
 

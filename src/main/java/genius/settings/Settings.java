@@ -29,7 +29,7 @@ public class Settings extends Observable implements Serializable {
 	public Settings() {
 		setDifficulty(Difficulty.EASY);
 		setMode(Mode.Default);
-		setMute(true);
+		setMute(false);
 		setSize(ScreenSize._640x480);
 	}
 
