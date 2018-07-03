@@ -13,8 +13,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
-import org.jfugue.theory.Note;
-
 import genius.player.Player;
 import genius.scores.Scores;
 import genius.scores.ScoresFileUtils;
@@ -31,7 +29,6 @@ public abstract class GameController implements java.awt.event.ActionListener {
 	private boolean mute;
 
 	private SequenceAnimator animator;
-	private SoundPlayer soundPlayer;
 
 	public void initialize(int width, int height, int sequenceSize, boolean mute) {
 		initializeModelView(width, height);
@@ -50,7 +47,6 @@ public abstract class GameController implements java.awt.event.ActionListener {
 		this.mute = mute;
 		animator = null;
 		player = null;
-		soundPlayer = null;
 	}
 
 	public GamePanel getGameView() {
@@ -100,13 +96,6 @@ public abstract class GameController implements java.awt.event.ActionListener {
 
 	public abstract void handleButtonClick(Button pressedButton);
 
-	protected void playSound(Button pressedButtonColor) {
-		if (soundPlayer == null) {
-			soundPlayer = new SoundPlayer();
-		}
-		soundPlayer.playSound(pressedButtonColor);
-	}
-
 	private class SequenceAnimator {
 		private List<Button> sequence;
 		private int index;
@@ -146,7 +135,9 @@ public abstract class GameController implements java.awt.event.ActionListener {
 		private void playNext() {
 			Button next = sequence.get(index);
 			gameView.getGui().setPressedButton(next);
-			playSound(next);
+			if(!mute) {
+				gameView.playSound(next);
+			}
 			index++;
 		}
 
@@ -154,15 +145,14 @@ public abstract class GameController implements java.awt.event.ActionListener {
 			return index == sequence.size();
 		}
 	}
-	
-	
+
 	public void gameOver() {
-		Scores scores = ScoresFileUtils.loadScores(ScoresFileUtils.SCORES_FILE_NAME); 
-		if(isHighScore(scores)) {
-			String name = JOptionPane.showInputDialog(gameView, "Insert your name:", 
-					"New high score", JOptionPane.PLAIN_MESSAGE);
-			if(name != null) {
-				if(!name.isEmpty()) {
+		Scores scores = ScoresFileUtils.loadScores(ScoresFileUtils.SCORES_FILE_NAME);
+		if (isHighScore(scores)) {
+			String name = JOptionPane.showInputDialog(gameView, "Insert your name:", "New high score",
+					JOptionPane.PLAIN_MESSAGE);
+			if (name != null) {
+				if (!name.isEmpty()) {
 					player.setName(name);
 					scores.addScore(player);
 					ScoresFileUtils.saveScores(ScoresFileUtils.SCORES_FILE_NAME, scores);
@@ -185,44 +175,6 @@ public abstract class GameController implements java.awt.event.ActionListener {
 
 	private boolean tableFull(Scores scores) {
 		return scores.size() == Scores.MAX_SCORES;
-	}
-
-	private class SoundPlayer {
-
-		private final Note GREEN_BUTTON_NOTE = new Note("E4i");
-		private final Note BLUE_BUTTON_NOTE = new Note("Ei");
-		private final Note RED_BUTTON_NOTE = new Note("Ai");
-		private final Note YELLOW_BUTTON_NOTE = new Note("C#i");
-
-		private org.jfugue.player.Player player = new org.jfugue.player.Player();
-
-		public void playSound(Button pressedButtonColor) {
-			final Note note = getNote(pressedButtonColor);
-			if (note != null) {
-				new Thread(new Runnable() {
-					public void run() {
-						if (mute) {
-							player.play(note);
-						}
-					}
-				}).start();
-			}
-		}
-
-		private Note getNote(Button pressedButtonColor) {
-			switch (pressedButtonColor) {
-			case GREEN:
-				return GREEN_BUTTON_NOTE;
-			case BLUE:
-				return BLUE_BUTTON_NOTE;
-			case RED:
-				return RED_BUTTON_NOTE;
-			case YELLOW:
-				return YELLOW_BUTTON_NOTE;
-			default:
-				return null;
-			}
-		}
 	}
 
 }

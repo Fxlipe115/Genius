@@ -8,6 +8,11 @@ package genius.game;
 
 import java.awt.event.ActionListener;
 import javax.swing.JLayeredPane;
+
+import org.jfugue.theory.Note;
+
+import genius.types.Button;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -20,6 +25,7 @@ public class GamePanel extends JLayeredPane {
 	private JButton beginButton;
 	private JButton exitButton;
 	private JLabel scoreLabel;
+	private SoundPlayer soundPlayer;
 
 	/**
 	 * Create the dialog.
@@ -55,6 +61,8 @@ public class GamePanel extends JLayeredPane {
 		scoreLabel.setBounds((width / 2) - (scoreLabelWidth / 2), (height / 2) - scoreLabelHeight, scoreLabelWidth,
 				scoreLabelHeight);
 		this.add(scoreLabel, PALETTE_LAYER);
+
+		soundPlayer = null;
 	}
 
 	public JButton getBeginButton() {
@@ -70,6 +78,7 @@ public class GamePanel extends JLayeredPane {
 		beginButton.addActionListener(controller);
 		exitButton.addActionListener(controller);
 	}
+
 	public void addExitButtonListener(ActionListener l) {
 		exitButton.addActionListener(l);
 	}
@@ -103,5 +112,48 @@ public class GamePanel extends JLayeredPane {
 
 	public void showPlayerTurnMessage() {
 		scoreLabel.setText("Your turn");
+	}
+
+	public void playSound(Button pressedButtonColor) {
+		if (soundPlayer == null) {
+			soundPlayer = new SoundPlayer();
+		}
+		soundPlayer.playSound(pressedButtonColor);
+	}
+
+	private class SoundPlayer {
+
+		private final Note GREEN_BUTTON_NOTE = new Note("E4i");
+		private final Note BLUE_BUTTON_NOTE = new Note("Ei");
+		private final Note RED_BUTTON_NOTE = new Note("Ai");
+		private final Note YELLOW_BUTTON_NOTE = new Note("C#i");
+
+		private org.jfugue.player.Player player = new org.jfugue.player.Player();
+
+		public void playSound(Button pressedButtonColor) {
+			final Note note = getNote(pressedButtonColor);
+			if (note != null) {
+				new Thread(new Runnable() {
+					public void run() {
+						player.play(note);
+					}
+				}).start();
+			}
+		}
+
+		private Note getNote(Button pressedButtonColor) {
+			switch (pressedButtonColor) {
+			case GREEN:
+				return GREEN_BUTTON_NOTE;
+			case BLUE:
+				return BLUE_BUTTON_NOTE;
+			case RED:
+				return RED_BUTTON_NOTE;
+			case YELLOW:
+				return YELLOW_BUTTON_NOTE;
+			default:
+				return null;
+			}
+		}
 	}
 }

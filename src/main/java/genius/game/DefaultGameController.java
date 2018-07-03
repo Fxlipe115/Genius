@@ -13,7 +13,7 @@ public class DefaultGameController extends GameController {
 	@Override
 	public void handleButtonClick(Button pressedButton) {
 		gameView.getGui().setPressedButton(pressedButton);
-		playSound(pressedButton);
+		gameView.playSound(pressedButton);
 
 		if (gameModel.getSequence().get(sequenceIndex) == pressedButton) {
 			if (sequenceIndex < player.getScore()) {
