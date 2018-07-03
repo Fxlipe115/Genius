@@ -80,9 +80,9 @@ public class ApplicationController {
 		int width = settings.getSize().getValue().width;
 		int height = settings.getSize().getValue().height;
 		int sequenceSize = settings.getDifficulty().getValue();
-		boolean hasSound = !settings.isMute();
+		boolean mute = settings.isMute();
 		GameController gameController = GameControllerFactory.create(settings.getMode());
-		gameController.initialize(width, height, sequenceSize, hasSound);
+		gameController.initialize(width, height, sequenceSize, mute);
 		gameController.getGameView().addExitButtonListener(backButtonListener());
 		setMainWindowContentPane(gameController.getGameView());
 	}
